@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
 import { useEth } from "./contexts/EthContext/EthProvider";
 
 import Layout from './templates/Layout';
+
+import MetamaskSetup from './pages/metamaskSetup';
+
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Market from './pages/Market';
@@ -23,42 +26,50 @@ import ExerciseInstruction from "./pages/ExerciseInstruction";
 
 export default function App() {
   // Eth Service Example
+  const [isMetamaskLogged, setIsMetamaskLogged] = useState(false);
   const ethService = useEth();
 
   useEffect(() => {
-    console.log(ethService.state);
-  }, [ethService, ethService.state]);
+    if (ethService.state.web3 && ethService.state.accounts) {
+      setIsMetamaskLogged(true);
+    } else {
+      setIsMetamaskLogged(false);
+    }
+  }, [ethService, setIsMetamaskLogged]);
 
-  // Router registry
+  // Router registry with metamask loggin state check
   return (
     <div id="App">
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path='register' element={<Register />} />
-          <Route path='profile' element={<Profile />} />
-          <Route path='market' element={<Market />} />
-          <Route path='bag' element={<Bag />} />
-          <Route path='history' element={<History />} />
+      { isMetamaskLogged
+        ? <Routes>
+            <Route element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path='register' element={<Register />} />
+              <Route path='profile' element={<Profile />} />
+              <Route path='market' element={<Market />} />
+              <Route path='bag' element={<Bag />} />
+              <Route path='history' element={<History />} />
 
-          <Route path='exercise/'>
-            <Route index element={<ExerciseChoosing />} />
-            <Route path='realtime' element={<ExerciseRealTime />} />
-            <Route path='result' element={<ExerciseResult />} />
-            <Route path='model3D' element={<ExerciseModel3D />} />
-            <Route path='instruction' element={<ExerciseInstruction />} />
+              <Route path='exercise/'>
+                <Route index element={<ExerciseChoosing />} />
+                <Route path='realtime' element={<ExerciseRealTime />} />
+                <Route path='result' element={<ExerciseResult />} />
+                <Route path='model3D' element={<ExerciseModel3D />} />
+                <Route path='instruction' element={<ExerciseInstruction />} />
 
-          </Route>
+              </Route>
 
-          <Route path='coupon/' >
-            <Route index element={<CouponMarket />} />
-            <Route path='keeper' element={<CouponKeeper />} />
-            <Route path='exchange' element={<CouponExchange />} />
-          </Route>
-        </Route>
+              <Route path='coupon/' >
+                <Route index element={<CouponMarket />} />
+                <Route path='keeper' element={<CouponKeeper />} />
+                <Route path='exchange' element={<CouponExchange />} />
+              </Route>
+            </Route>
 
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+      : <MetamaskSetup />
+     }
     </div>
   );
 }
