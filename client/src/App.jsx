@@ -4,7 +4,7 @@ import { useEth } from "./contexts/EthContext/EthProvider";
 
 import Layout from './templates/Layout';
 
-import MetamaskSetup from './pages/metamaskSetup';
+import MetamaskSetup from './pages/MetamaskSetup';
 
 import Home from './pages/Home';
 import Profile from './pages/Profile';

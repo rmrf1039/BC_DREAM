@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+@import "bootstrap/scss/functions"; 
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+$body-bg: #070708;
+
+$primary: #F3AD1F;
+$light: #F5F5F3;
+
+$theme-colors: (
+  "primary": $primary,
+  "light": $light,
+);
+
+body {
+  color: $light;
+}
+
+h1 {
+  font-family: 'Bungee', cursive;
+}
+
+.h-full {
+  height: 100vh;
+}
+.material-icons {
+  font-family: 'Material Icons';
+  color: $light;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+@import "bootstrap";

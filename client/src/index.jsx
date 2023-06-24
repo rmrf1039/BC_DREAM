@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from "./App";
 import { EthProvider } from "./contexts/EthContext/EthProvider";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/scss/app.scss';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
