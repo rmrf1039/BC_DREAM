@@ -10,7 +10,7 @@ const Layout = () => {
         <>
             {back && <Link onClick={() => navigate(-1)}>Back</Link>}
             <div className="layout">
-                <h2>Layout</h2>
+                
             </div >
             <div className="block" >
                 <Outlet />

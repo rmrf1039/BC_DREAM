@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Register = () => {
+export default function Register () {
     return (
         <div>
             <h1>Register</h1>
@@ -8,5 +8,3 @@ const Register = () => {
         </div>
     );
 }
-
-export default Register;

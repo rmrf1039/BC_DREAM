@@ -4,6 +4,7 @@ const Home = () => {
         <div>
             <h1>Home</h1>
             <ul>
+                <li><Link to='/register'>register</Link></li>
                 <li><Link to='/bag'>bag</Link></li>
                 <li><Link to='/market'>market</Link></li>
                 <li><Link to='/exercise'>exercise</Link></li>
