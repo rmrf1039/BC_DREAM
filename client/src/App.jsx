@@ -23,8 +23,10 @@ import History from './pages/History';
 import CouponKeeper from './pages/CouponKeeper';
 import ExerciseInstruction from "./pages/ExerciseInstruction";
 
+// APP.jsx 負責檢查當前環境是否已經登入 Metamask
 
 export default function App() {
+  // Eth Service Example
   const ethService = useEth();
 
   useEffect(() => {
@@ -35,7 +37,6 @@ export default function App() {
     <div id="App">
       <BrowserRouter>
         <Routes>
-
           <Route path='/' element={<AuthLayout />}>
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
