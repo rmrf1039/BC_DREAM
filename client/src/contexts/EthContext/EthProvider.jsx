@@ -15,7 +15,7 @@ const initialState = {
 
 const reducer = (state, action) => {
   const { type, data } = action;
-  
+
   switch (type) {
     case actions.init:
       return { ...state, ...data };
@@ -32,7 +32,7 @@ export function EthProvider({ children }) {
   const init = useCallback(
     async artifact => {
       if (artifact) {
-        const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545");
+        const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545"); // add window.ethereum in production, just in case
         const accounts = await web3.eth.requestAccounts();
         const networkID = await web3.eth.net.getId();
         const { abi } = artifact;
@@ -83,11 +83,11 @@ export function EthProvider({ children }) {
       state,
       dispatch
     }}>
-        {children}
+      {children}
     </EthContext.Provider>
   );
 }
 
-export function useEth () {
+export function useEth() {
   return useContext(EthContext)
 };

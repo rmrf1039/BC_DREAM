@@ -23,9 +23,13 @@ h1 {
   font-family: 'Bungee', cursive;
 }
 
-.h-full {
-  height: 100vh;
+.active{
+  pointer-events: none;
 }
+.active .material-icons{
+  color: $primary;
+}
+
 .material-icons {
   font-family: 'Material Icons';
   color: $light;

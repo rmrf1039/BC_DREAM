@@ -5,15 +5,15 @@ import Menu from '../components/Menu';
 const Layout = () => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
-    
+
     const back = !['/', '/exercise/realtime'].includes(pathname)
 
     return (
         <>
             <div className="container p-5">
-                {back && <Link onClick={() => navigate(-1)}>Back</Link>}
+                {back && <Link className="d-block mb-2" onClick={() => navigate(-1)}>Back</Link>}
                 <div className="layout">
-                    
+
                 </div >
                 <div className="block" >
                     <Outlet />
