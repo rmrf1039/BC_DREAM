@@ -10,7 +10,7 @@ $ npm install -g truffle
 建議使用 VS，並安裝 remix 來幫助 compile 與 deploy
 
 2. 安裝依賴程式
-對 /、/client、 /truffle 文件夾目錄下都執行以下指令
+對 /client、 /truffle 文件夾目錄下都執行以下指令
 ```sh
 $ npm install
 ```

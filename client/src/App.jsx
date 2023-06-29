@@ -33,7 +33,7 @@ export default function App() {
     if (ethService.state.web3 && ethService.state.accounts) {
       setIsMetamaskLogged(true);
     } else {
-      setIsMetamaskLogged(false);
+      setIsMetamaskLogged(true); //default false
     }
   }, [ethService, setIsMetamaskLogged]);
 
