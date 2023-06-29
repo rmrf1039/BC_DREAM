@@ -17,14 +17,16 @@ function BackLink () {
 
 const Layout = () => {
     const { pathname } = useLocation();
+    const navigate = useNavigate();
+    
     const back = !['/', '/exercise/realtime'].includes(pathname)
 
     return (
         <>
-            <div className="container p-4">
-                {back && <BackLink></BackLink>}
+            <div className="container p-5">
+                {back && <Link onClick={() => navigate(-1)}>Back</Link>}
                 <div className="layout">
-                    
+
                 </div >
                 <div className="block" >
                     <Outlet />
