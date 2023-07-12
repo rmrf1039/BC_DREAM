@@ -12,14 +12,14 @@ contract Wear is ERC1155, AccessControl {
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
     }
  
-    function mintWear(address to) public returns (uint256) {
+    function mintWear(address to) public returns (bool) {
         require(hasRole(DEFAULT_ADMIN_ROLE, msg.sender), "Caller is not a minter");
         require(to != address(0), "The _to address is invalid");
 
         _mint(to, lastTokenId, 1, "");
-        lastTokenId += 1;
+        lastTokenId += 1; //下一次的 tokenId，所以前端的 getLastTokenId 要減一才是最後一個
 
-        return lastTokenId;
+        return true; //成功就返回 true
     }
 
     function uri(uint256 _tokenid) override public pure returns (string memory) {
