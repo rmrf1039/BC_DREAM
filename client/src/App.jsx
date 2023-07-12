@@ -24,6 +24,8 @@ import History from './pages/History';
 import CouponKeeper from './pages/CouponKeeper';
 import ExerciseInstruction from "./pages/ExerciseInstruction";
 
+import Test from './pages/Test';
+
 export default function App() {
   // Eth Service Example
   const [isMetamaskLogged, setIsMetamaskLogged] = useState(false);
@@ -44,6 +46,7 @@ export default function App() {
         ? <Routes>
             <Route element={<Layout />}>
               <Route index element={<Home />} />
+              <Route path='test' element={<Test />} />
               <Route path='register' element={<Register />} />
               <Route path='profile' element={<Profile />} />
               <Route path='market' element={<Market />} />

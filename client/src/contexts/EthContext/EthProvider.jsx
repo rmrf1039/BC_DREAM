@@ -1,4 +1,6 @@
-import React, { useReducer, useCallback, useEffect, createContext, useContext } from "react";
+import React, {
+  useReducer, useCallback, useEffect, createContext, useContext,
+} from "react";
 import Web3 from "web3";
 
 const actions = {
@@ -34,7 +36,8 @@ export function EthProvider({ children }) {
       if (artifact) {
         const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545"); // add window.ethereum in production, just in case
         const accounts = await web3.eth.requestAccounts();
-        const networkID = await web3.eth.net.getId();
+        //const networkID = await web3.eth.net.getId();
+        const networkID = 1337;
         const { abi } = artifact;
         let address, contract;
 
@@ -66,7 +69,7 @@ export function EthProvider({ children }) {
     tryInit();
   }, [init]);
 
-  /* useEffect(() => {
+  useEffect(() => {
     const events = ["chainChanged", "accountsChanged"];
     const handleChange = () => {
       init(state.artifact);
@@ -76,7 +79,7 @@ export function EthProvider({ children }) {
     return () => {
       events.forEach(e => window.ethereum.removeListener(e, handleChange));
     };
-  }, [init, state.artifact]);*/
+  }, [init, state.artifact]);
 
   return (
     <EthContext.Provider value={{
