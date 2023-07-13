@@ -1,28 +1,31 @@
 import { NavLink } from "react-router-dom";
 
-export default function Menu() {
-
+export default function Menu(props) {
+  
   return (
-    <div className="container-fluid fixed-bottom p-4">
-      <div className="d-flex justify-content-center">
-        <div className="d-flex gap-5">
-          <NavLink to='/bag' className={({ isActive }) => isActive ? "active" : ""} >
-            <span className="material-icons">backpack</span>
-          </NavLink>
-          <NavLink to='/market' className={({ isActive }) => isActive ? "active" : ""} >
-            <span className="material-icons" >storefront</span>
-          </NavLink>
-          <NavLink to='/exercise' className={({ isActive }) => isActive ? "active" : ""} >
-            <span className="material-icons">directions_run</span>
-          </NavLink>
-          <NavLink to='/coupon' className={({ isActive }) => isActive ? "active" : ""} >
-            <span className="material-icons">confirmation_number</span>
-          </NavLink>
-          <NavLink to='/profile' className={({ isActive }) => isActive ? "active" : ""} >
-            <span className="material-icons">account_circle</span>
-          </NavLink>
-        </div>
+    <nav id="nav" className={`${ !props.isMenuVisible && 'd-none' } container-fluid fixed-bottom pt-2 pb-3 frosted-background`}>
+      <div className="d-flex justify-content-around">
+        <NavLink to='/bag' className={`d-flex flex-column align-items-center justify-content-center`}>
+          <span className="material-symbols-sharp">backpack</span>
+          Backpack
+        </NavLink>
+        <NavLink to='/market' className={`d-flex flex-column align-items-center justify-content-center`} >
+          <span className="material-symbols-sharp" >storefront</span>
+          Market
+        </NavLink>
+        <NavLink to='/exercise' className={`d-flex flex-column align-items-center justify-content-center`} >
+          <span className="material-symbols-sharp">directions_run</span>
+          Start
+        </NavLink>
+        <NavLink to='/coupon' className={`d-flex flex-column align-items-center justify-content-center`} >
+          <span className="material-symbols-sharp">confirmation_number</span>
+          Coupon
+        </NavLink>
+        <NavLink to='/profile' className={`d-flex flex-column align-items-center justify-content-center`} >
+          <span className="material-symbols-sharp">account_circle</span>
+          Profile
+        </NavLink>
       </div>
-    </div >
+    </nav >
   );
 }

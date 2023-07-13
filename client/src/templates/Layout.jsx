@@ -15,15 +15,15 @@ function BackLink () {
     );
 }
 
-const Layout = () => {
+const Layout = (props) => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
     
-    const back = !['/', '/exercise/realtime'].includes(pathname)
+    const back = !['/',  '/register', '/bag', '/market', '', '/exercise/realtime'].includes(pathname)
 
     return (
         <>
-            <div className="container p-5">
+            <div className="vh-100 bg-bgBlue">
                 {back && <BackLink> </BackLink>}
                 <div className="layout">
 
@@ -33,7 +33,7 @@ const Layout = () => {
                 </div>
             </div>
 
-            <Menu />
+            <Menu isMenuVisible={props.isMenuVisible} />
         </>
     );
 }

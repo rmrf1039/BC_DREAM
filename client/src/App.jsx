@@ -29,6 +29,7 @@ import Test from './pages/Test';
 export default function App() {
   // Eth Service Example
   const [isMetamaskLogged, setIsMetamaskLogged] = useState(false);
+  const [isMenuVisible, setIsMenuVisible] = useState(true);
   const ethService = useEth();
 
   useEffect(() => {
@@ -44,28 +45,28 @@ export default function App() {
     <div id="App">
       { isMetamaskLogged
         ? <Routes>
-            <Route element={<Layout />}>
+            <Route element={<Layout isMenuVisible={isMenuVisible}  />}>
               <Route index element={<Home />} />
               <Route path='test' element={<Test />} />
-              <Route path='register' element={<Register />} />
-              <Route path='profile' element={<Profile />} />
-              <Route path='market' element={<Market />} />
-              <Route path='bag' element={<Bag />} />
-              <Route path='history' element={<History />} />
+              <Route path='register' element={<Register setIsMenuVisible={setIsMenuVisible} />} />
+              <Route path='profile' element={<Profile setIsMenuVisible={setIsMenuVisible} />} />
+              <Route path='market' element={<Market setIsMenuVisible={setIsMenuVisible} />} />
+              <Route path='bag' element={<Bag setIsMenuVisible={setIsMenuVisible} />} />
+              <Route path='history' element={<History setIsMenuVisible={setIsMenuVisible} />} />
 
               <Route path='exercise/'>
-                <Route index element={<ExerciseChoosing />} />
-                <Route path='realtime' element={<ExerciseRealTime />} />
-                <Route path='result' element={<ExerciseResult />} />
-                <Route path='model3D' element={<ExerciseModel3D />} />
-                <Route path='instruction' element={<ExerciseInstruction />} />
+                <Route index element={<ExerciseChoosing setIsMenuVisible={setIsMenuVisible} />} />
+                <Route path='realtime' element={<ExerciseRealTime setIsMenuVisible={setIsMenuVisible} />} />
+                <Route path='result' element={<ExerciseResult setIsMenuVisible={setIsMenuVisible} />} />
+                <Route path='model3D' element={<ExerciseModel3D setIsMenuVisible={setIsMenuVisible} />} />
+                <Route path='instruction' element={<ExerciseInstruction setIsMenuVisible={setIsMenuVisible} />} />
 
               </Route>
 
               <Route path='coupon/' >
-                <Route index element={<CouponMarket />} />
-                <Route path='keeper' element={<CouponKeeper />} />
-                <Route path='exchange' element={<CouponExchange />} />
+                <Route index element={<CouponMarket setIsMenuVisible={setIsMenuVisible} />} />
+                <Route path='keeper' element={<CouponKeeper setIsMenuVisible={setIsMenuVisible} />} />
+                <Route path='exchange' element={<CouponExchange setIsMenuVisible={setIsMenuVisible} />} />
               </Route>
             </Route>
 

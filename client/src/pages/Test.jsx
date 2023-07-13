@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEth } from "../contexts/EthContext/EthProvider";
 
-import Input from "../components/forms/input"
+import Input from "../components/forms/Input"
 
 const Test = () => {
   const ethService = useEth();
@@ -97,15 +97,15 @@ const Test = () => {
   }
 
   return (
-      <div className="text-light">
+      <div className="text-light p-3">
           <h1>Test</h1>
           <div className="row">
             <div className="col-12 mb-3">
               Current address: {ethService.state.accounts}
               <br />
-              To address: <Input value={toAddress} setValue={setToAddress}></Input>
+              <Input title="To address" value={toAddress} setValue={setToAddress}></Input>
               <br />
-              Token Id: <Input value={tokenId} setValue={setTokenId}></Input>
+              <Input title="Token Id" value={tokenId} setValue={setTokenId}></Input>
             </div>
             <div className="col-12 mb-3">
               Return Msg: {ethReturnMsg}
