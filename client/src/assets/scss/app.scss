@@ -15,7 +15,11 @@ $dark: #1f271b;
 $lightPrimary: #9FA7ED;
 $lightGray: #E9E9E9;
 $gray: #B0B1B4;
+
 $btnBlue: #384151;
+
+$inputBg: #384151;
+$inputBorder: #6B7280;
 
 $theme-colors: (
   "primary": $primary,
@@ -34,14 +38,28 @@ $theme-colors: map-merge($theme-colors, (
 
 $headings-font-family: 'VT323', monospace;
 
-$input-bg: #384151;
-$input-border-color: #6B7280;
+$input-bg: $inputBg;
+$input-border-color: $inputBorder;
 $input-placeholder-color: #6B7280;
 $input-color: $light;
 $input-focus-color: $light;
-$input-focus-bg: #6B7280;
+$input-focus-bg: $inputBg;
 $input-focus-border-color: $light;
 $input-focus-box-shadow: none;
+$input-border-radius: 0;
+$input-border-width: 3px;
+$form-label-font-size: 1.5rem;
+
+$form-select-border-radius: 0;
+$form-select-border-width: 3px;
+$form-select-box-shadow: none;
+$form-select-bg: $inputBg;
+$form-select-border-color: $inputBorder;
+$form-select-indicator-color: $inputBorder;
+$form-select-indicator: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$form-select-indicator-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
+$form-select-color: $light;
+$form-select-focus-box-shadow: none;
+$form-select-focus-border-color: $light;
 
 @import "bootstrap";
 
@@ -67,7 +85,7 @@ a {
   -webkit-backdrop-filter: saturate(140%) blur(20px);
   backdrop-filter: saturate(140%) blur(20px);
 
-  background-color: rgba(255, 255, 255, .4);
+  background-color: rgba(255, 255, 255, 1);
   -webkit-transition-property: background-color, -webkit-backdrop-filter;
   transition-property: background-color, -webkit-backdrop-filter;
   transition-property: background-color, backdrop-filter;

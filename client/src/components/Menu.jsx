@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export default function Menu(props) {
   
   return (
-    <nav id="nav" className={`${ !props.isMenuVisible && 'd-none' } container-fluid fixed-bottom pt-2 pb-3 frosted-background`}>
+    <nav id="nav" className={`${ !props.isMenuVisible && 'd-none' } container-fluid fixed-bottom pt-2 pb-2 frosted-background`}>
       <div className="d-flex justify-content-around">
         <NavLink to='/bag' className={`d-flex flex-column align-items-center justify-content-center`}>
           <span className="material-symbols-sharp">backpack</span>

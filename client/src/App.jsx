@@ -10,7 +10,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Market from './pages/Market';
 
-import Register from './pages/Register';
+import PersonalInfo from './pages/PersonalInfo';
 import Bag from './pages/Bag';
 import NotFound from './pages/NotFound';
 
@@ -48,8 +48,8 @@ export default function App() {
             <Route element={<Layout isMenuVisible={isMenuVisible}  />}>
               <Route index element={<Home />} />
               <Route path='test' element={<Test />} />
-              <Route path='register' element={<Register setIsMenuVisible={setIsMenuVisible} />} />
-              <Route path='profile' element={<Profile setIsMenuVisible={setIsMenuVisible} />} />
+              <Route path='register' element={<PersonalInfo setIsMenuVisible={setIsMenuVisible} />} />
+              <Route path='profile' element={<PersonalInfo setIsMenuVisible={setIsMenuVisible} />} />
               <Route path='market' element={<Market setIsMenuVisible={setIsMenuVisible} />} />
               <Route path='bag' element={<Bag setIsMenuVisible={setIsMenuVisible} />} />
               <Route path='history' element={<History setIsMenuVisible={setIsMenuVisible} />} />
