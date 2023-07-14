@@ -8,12 +8,14 @@ const Register = (props) => {
         props.setIsMenuVisible(0);
     });
 
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [birthday, setBirthday] = useState("");
-    const [height, setHeight] = useState("");
-    const [weight, setWeight] = useState("");
-    const [sex, setSex] = useState("Male");
+    const [values, setValues] = useState({
+        name: "",
+        email: "",
+        birthday: "",
+        height: "",
+        weight: "",
+        sex: "Male",
+    });
 
     const arrayRange = (start, stop, step) =>
         Array.from(
@@ -27,8 +29,15 @@ const Register = (props) => {
         
     );
 
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setValues((prevFormData) => ({ ...prevFormData, [name]: value }));
+    }
+
     const handleSubmit = (event) => {
         alert("submit");
+        console.log(values);
         event.preventDefault();
     }
 
@@ -40,14 +49,14 @@ const Register = (props) => {
             </div>
 
             <form onSubmit={handleSubmit}>
-                <Input title="Name" value={name} setValue={setName}></Input>
-                <Input title="Email" value={email} setValue={setEmail}></Input>
-                <Input title="Birthday" placeholder="yyyy/MM/dd" value={birthday} setValue={setBirthday}></Input>
+                <Input name="name" title="Name" value={values.name} setValue={handleChange}></Input>
+                <Input name="email" title="Email" value={values.email} setValue={handleChange}></Input>
+                <Input name="birthday" title="Birthday" placeholder="yyyy/MM/dd" value={values.birthday} setValue={handleChange}></Input>
                 <Select
-                    name="sexSelect"
+                    name="sex"
                     title="Sex"
-                    value={sex}
-                    setValue={setSex}
+                    value={values.sex}
+                    setValue={handleChange}
                     options={[{
                         label: 'Male',
                         value: 'Male',
@@ -59,19 +68,19 @@ const Register = (props) => {
                 <div className="row">
                     <div className="col-6">
                         <Select
-                            name="heightSelect"
+                            name="height"
                             title="Height (cm)"
-                            value={height}
-                            setValue={setHeight}
+                            value={values.height}
+                            setValue={handleChange}
                             options={arrayRange(150, 190, 1)}
                         ></Select>
                     </div>
                     <div className="col-6">
                         <Select
-                            name="weightSelect"
+                            name="weight"
                             title="Weight (kg)"
-                            value={weight}
-                            setValue={setWeight}
+                            value={values.weight}
+                            setValue={handleChange}
                             options={arrayRange(40, 100, 1)}
                         ></Select>
                     </div>

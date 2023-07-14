@@ -5,10 +5,11 @@ const Select = (props) => {
     <div className="mb-3">
       <label htmlFor={props.name || ''} className="form-label">{props.title || ''}</label>
       <select
+        name={props.name}
         className="form-select"
         aria-label="select"
         value={props.value}
-        onChange={(event) => props.setValue(event.target.value)}
+        onChange={props.setValue}
       >
         <option value="" disabled>Choose</option>
         {(props.options || []).map((option) => (

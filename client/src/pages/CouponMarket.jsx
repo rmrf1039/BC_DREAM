@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 
-const CouponMarket = () => {
+const CouponMarket = (props) => {
+    useEffect(() => {
+        props.setIsMenuVisible(1);
+    });
+    
     return (
         <>
             <div>

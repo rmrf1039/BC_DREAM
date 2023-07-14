@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 
-const Market = () => {
+const Market = (props) => {
+    useEffect(() => {
+        props.setIsMenuVisible(1);
+    });
+
     console.log(useLocation())
     return (
         <div>
