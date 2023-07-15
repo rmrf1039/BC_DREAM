@@ -1,6 +1,7 @@
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 
 import Menu from '../components/Menu';
+import Button from 'react-bootstrap/Button';
 
 function BackLink () {
     const navigate = useNavigate();
@@ -8,10 +9,10 @@ function BackLink () {
     return (
         <Link onClick={() => navigate(-1)}>
             <div className="p-3 d-inline-block">
-                <button type="button" className="p-0 btn btn-transparent text-light d-flex align-items-center">
+                <Button variant="transparent" className="p-0 text-light d-flex align-items-center">
                     <span className="material-symbols-sharp me-2">arrow_back</span>
                     <span>Back</span>
-                </button>
+                </Button>
             </div>
         </Link>
     );
@@ -27,7 +28,9 @@ const Layout = (props) => {
         '/register',
         '/bag',
         '/market',
-        '/exercise/realtime'
+        '/exercise',
+        '/exercise/realtime',
+        '/coupon',
     ].includes(pathname)
 
     return (

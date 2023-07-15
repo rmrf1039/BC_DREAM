@@ -1,13 +1,13 @@
+import Form from 'react-bootstrap/Form';
+
 const Select = (props) => {
-  //value={this.state.value} onChange={this.handleChange}
 
   return (
-    <div className="mb-3">
-      <label htmlFor={props.name || ''} className="form-label">{props.title || ''}</label>
-      <select
+    <Form.Group className="mb-3" controlId={props.name || ''}>
+      <Form.Label>{props.title || ''}</Form.Label>
+      <Form.Select
+        aria-label="select input"
         name={props.name}
-        className="form-select"
-        aria-label="select"
         value={props.value}
         onChange={props.setValue}
       >
@@ -15,8 +15,8 @@ const Select = (props) => {
         {(props.options || []).map((option) => (
           <option key={option.value} value={option.value}>{option.label}</option>
         ))}
-      </select>
-    </div>
+      </Form.Select>
+    </Form.Group>
   )
 }
 

@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 export default function Menu(props) {
-  
   return (
     <nav id="nav" className={`${ !props.isMenuVisible && 'd-none' } container-fluid fixed-bottom pt-2 pb-2 frosted-background`}>
       <div className="d-flex justify-content-around">
@@ -13,9 +12,9 @@ export default function Menu(props) {
           <span className="material-symbols-sharp" >storefront</span>
           Market
         </NavLink>
-        <NavLink to='/exercise' className={`d-flex flex-column align-items-center justify-content-center`} >
-          <span className="material-symbols-sharp">directions_run</span>
-          Start
+        <NavLink to='/' className={`d-flex flex-column align-items-center justify-content-center`} >
+          <span className="material-symbols-sharp">home</span>
+          Home
         </NavLink>
         <NavLink to='/coupon' className={`d-flex flex-column align-items-center justify-content-center`} >
           <span className="material-symbols-sharp">confirmation_number</span>

@@ -1,19 +1,19 @@
 import React from 'react'
 
+import Form from 'react-bootstrap/Form';
+
 const Input = (props) => {
   return (
-    <div className="mb-3">
-        <label htmlFor={props.name || ''} className="form-label">{props.title || ''}</label>
-        <input
-          type={props.type || 'text'}
-          className="form-control"
-          id={props.name || ''}
-          name={props.name}
-          placeholder={props.placeholder || ''}
-          value={props.value}
-          onChange={props.setValue}
-        />
-    </div>
+    <Form.Group className="mb-3" controlId={props.name || ''}>
+      <Form.Label>{props.title || ''}</Form.Label>
+      <Form.Control
+        type={props.type || 'text'}
+        name={props.name}
+        placeholder={props.placeholder || ''}
+        value={props.value}
+        onChange={props.setValue}
+      />
+    </Form.Group>
   )
 }
 

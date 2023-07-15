@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import Input from "../components/forms/Input"
 import Select from "../components/forms/Select"
 
@@ -8,6 +13,7 @@ const Register = (props) => {
         props.setIsMenuVisible(0);
     });
 
+    // Initial values
     const [values, setValues] = useState({
         name: "",
         email: "",
@@ -42,13 +48,13 @@ const Register = (props) => {
     }
 
     return (
-        <div className="container p-3">
+        <Container className="p-3">
             <div className="mb-5">
                 <h1 className="text-center">Personal Information</h1>
                 <h3 className="text-center">Please fill the information below</h3>
             </div>
 
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <Input name="name" title="Name" value={values.name} setValue={handleChange}></Input>
                 <Input name="email" title="Email" value={values.email} setValue={handleChange}></Input>
                 <Input name="birthday" title="Birthday" placeholder="yyyy/MM/dd" value={values.birthday} setValue={handleChange}></Input>
@@ -65,8 +71,8 @@ const Register = (props) => {
                         value: 'Female',
                     }]}
                 ></Select>
-                <div className="row">
-                    <div className="col-6">
+                <Row>
+                    <Col>
                         <Select
                             name="height"
                             title="Height (cm)"
@@ -74,8 +80,8 @@ const Register = (props) => {
                             setValue={handleChange}
                             options={arrayRange(150, 190, 1)}
                         ></Select>
-                    </div>
-                    <div className="col-6">
+                    </Col>
+                    <Col>
                         <Select
                             name="weight"
                             title="Weight (kg)"
@@ -83,11 +89,11 @@ const Register = (props) => {
                             setValue={handleChange}
                             options={arrayRange(40, 100, 1)}
                         ></Select>
-                    </div>
-                </div>
-                <button type="submit" className="btn btn-primary w-100 mt-3">Confirm</button>
-            </form>
-        </div>
+                    </Col>
+                </Row>
+                <Button variant="primary" type="submit" className="w-100 mt-3">Confirm</Button>
+            </Form>
+        </Container>
     );
 }
 

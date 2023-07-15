@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 
-export default function Home () {
+const Home = (props) => {
+    useEffect(() => {
+        props.setIsMenuVisible(1);
+    });
+
     return (
         <header >
             <h1 className="text-light">Hi! <span className="text-primary">CYLU</span>,</h1>
@@ -8,4 +13,6 @@ export default function Home () {
         </header>
     );
 }
+
+export default Home;
 
