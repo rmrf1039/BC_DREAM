@@ -56,7 +56,7 @@ const Market = (props) => {
                     </Carousel.Item>
                 </Carousel>
 
-                <Button variant="dark" type="submit" className="w-100 mt-3">Pruchase</Button>
+                <Button variant="dark" type="submit" className="w-100 mt-3">Purchase</Button>
             </Form>
         </Container>
     );

@@ -10,9 +10,11 @@
 $primary: #7D3A6B;
 $secondary: #496183;
 $bgBlue: #17212F;
+$bgBlueLight: #1F2937;
+$bgLight: #807D7B;
 $danger: #EF4444;
 $light: #F3F4F6;
-$dark: #1f271b;
+$dark: #0F141C;
 $lightPrimary: #9FA7ED;
 $lightGray: #E9E9E9;
 $gray: #B0B1B4;
@@ -35,7 +37,9 @@ $theme-colors: map-merge($theme-colors, (
   "lightPrimary": $lightPrimary,
   "lightGray": $lightGray,
   "bgBlue": $bgBlue,
+  "bgBlueLight": $bgBlueLight,
   "btnBlue": $btnBlue,
+  "bgLight": $bgLight,
 ));
 
 $headings-font-family: 'VT323', monospace;

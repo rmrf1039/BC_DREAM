@@ -11,9 +11,11 @@ import Home from './pages/Home';
 import Market from './pages/Market';
 
 import PersonalInfo from './pages/PersonalInfo';
+import Profile from './pages/Profile';
 
 import Bag from './pages/Bag';
 import WearDetail from './pages/WearDetail';
+import Transfer from './pages/Transfer';
 
 
 import ExerciseChoosing from './pages/ExerciseChoosing';
@@ -49,12 +51,15 @@ export default function App() {
             <Route element={<Layout isMenuVisible={isMenuVisible}  />}>
               <Route index element={<Home setIsMenuVisible={setIsMenuVisible} />} />
               <Route path='test' element={<Test setIsMenuVisible={setIsMenuVisible} />} />
-              <Route path='register' element={<PersonalInfo setIsMenuVisible={setIsMenuVisible} />} />
-              <Route path='profile' element={<PersonalInfo setIsMenuVisible={setIsMenuVisible} />} />
               <Route path='market' element={<Market setIsMenuVisible={setIsMenuVisible} />} />
               <Route path='bag' element={<Bag setIsMenuVisible={setIsMenuVisible} />} />
               <Route path='wear' element={<WearDetail setIsMenuVisible={setIsMenuVisible} />} />
+              <Route path='transfer' element={<Transfer setIsMenuVisible={setIsMenuVisible} />} />
               <Route path='history' element={<History setIsMenuVisible={setIsMenuVisible} />} />
+
+              <Route path='register' element={<PersonalInfo setIsMenuVisible={setIsMenuVisible} />} />
+              <Route path='profile' element={<Profile setIsMenuVisible={setIsMenuVisible} />} />
+              <Route path='person_info' element={<PersonalInfo setIsMenuVisible={setIsMenuVisible} />} />
 
               <Route path='exercise/'>
                 <Route index element={<ExerciseChoosing setIsMenuVisible={setIsMenuVisible} />} />
