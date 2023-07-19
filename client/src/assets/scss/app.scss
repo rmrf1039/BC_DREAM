@@ -14,8 +14,8 @@ $bgBlue: #000;
 $bgBlueLight: #1F2937;
 $bgLight: #807D7B;
 $danger: #EF4444;
-$light: #F3F4F6;
-$dark: #0F141C;
+$light: #fff;
+$dark: #000;
 $lightPrimary: #9FA7ED;
 $lightGray: #E9E9E9;
 $gray: #B0B1B4;
@@ -44,6 +44,15 @@ $theme-colors: map-merge($theme-colors, (
 ));
 
 $headings-font-family: 'VT323', monospace;
+
+$navbar-toggler-padding-y: 0;
+$navbar-toggler-padding-x: 0;
+$navbar-toggler-border-radius: 0;
+$navbar-light-color: $gray;
+$navbar-light-hover-color: $gray;
+$navbar-light-active-color: $dark;
+
+$transition-collapse: none;
 
 @import "bootstrap";
 
@@ -78,22 +87,36 @@ a {
   }
 }
 
-#nav {
-  border-top: 1px solid $lightGray;
+.navbar-toggler {
+  border: 0;
+}
+.nav-link {
+  margin-bottom: 1rem;
+  position: relative;
 
-  a {
-    font-size: 1rem;
-    font-family: 'VT323', monospace;
+  &.active {
+    padding-left: 24px;
 
-    &, .material-icons {
+    &::before {
+      position: absolute;
+      left: -2px;
+      margin-top: 4px;
+      content: "";
+      width: 2px;
+      height: 2px;
       color: $dark;
+      box-shadow: 2px 2px,4px 2px,2px 4px,4px 4px,6px 4px,8px 4px,2px 6px,4px 6px,6px 6px,8px 6px,10px 6px,2px 8px,4px 8px,6px 8px,8px 8px,10px 8px,12px 8px,2px 10px,4px 10px,6px 10px,8px 10px,10px 10px,2px 12px,4px 12px,6px 12px,8px 12px,2px 14px,4px 14px;
     }
   }
 
-  .active, .active .material-icons{
-    pointer-events: none;
-    color: $primary;
+  p {
+    font-family: 'Press Start 2P', cursive !important;
+    margin-bottom: 0;
   }
+}
+
+.container.h-100 {
+  height: calc(100% - 76px - 2rem) !important;
 }
 
 .container.card {

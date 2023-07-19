@@ -9,10 +9,6 @@ import Select from "../components/forms/Select"
 import { setDarkModeActivation, Container, Button, Text } from "nes-ui-react";
 
 const Register = (props) => {
-    useEffect(() => {
-        props.setIsMenuVisible(0);
-    });
-
     // Initial values
     const [values, setValues] = useState({
         name: "",

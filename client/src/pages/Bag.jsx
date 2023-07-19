@@ -11,10 +11,6 @@ import { setDarkModeActivation, Container, Toolbar, IconButton, Separator, Space
 const Bag = (props) => {
   const [tab, setTab] = useState(0);
 
-  useEffect(() => {
-    props.setIsMenuVisible(1);
-  });
-
   const data = useListingWear().map(r => {
     return {
       ...r,

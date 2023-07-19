@@ -1,30 +1,76 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 
-export default function Menu(props) {
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+
+import { IconButton, PixelIcon, Spacer, Text } from 'nes-ui-react';
+import { useState } from "react";
+
+function BackLink() {
+  const navigate = useNavigate();
+
   return (
-    <nav id="nav" className={`${ !props.isMenuVisible && 'd-none' } container-fluid fixed-bottom pt-2 pb-2 frosted-background`}>
-      <div className="d-flex justify-content-around">
-        <NavLink to='/bag' className={`d-flex flex-column align-items-center justify-content-center`}>
-          <span className="material-symbols-sharp">backpack</span>
-          Backpack
-        </NavLink>
-        <NavLink to='/market' className={`d-flex flex-column align-items-center justify-content-center`} >
-          <span className="material-symbols-sharp" >storefront</span>
-          Market
-        </NavLink>
-        <NavLink to='/' className={`d-flex flex-column align-items-center justify-content-center`} >
-          <span className="material-symbols-sharp">home</span>
-          Home
-        </NavLink>
-        <NavLink to='/coupon' className={`d-flex flex-column align-items-center justify-content-center`} >
-          <span className="material-symbols-sharp">confirmation_number</span>
-          Coupon
-        </NavLink>
-        <NavLink to='/profile' className={`d-flex flex-column align-items-center justify-content-center`} >
-          <span className="material-symbols-sharp">account_circle</span>
-          Profile
-        </NavLink>
+    <Link onClick={() => navigate(-1)}>
+      <div className="d-inline-block">
+        <IconButton color="error">
+          <PixelIcon inverted name="pixelicon-close" size='small' className="me-2" />
+          <Text size='small'>Back</Text>
+        </IconButton>
       </div>
-    </nav >
+    </Link>
+  );
+}
+
+export default function Menu() {
+  const { pathname } = useLocation();
+  const back = ![
+    '',
+    '/',
+    '/register',
+    '/profile',
+    '/bag',
+    '/market',
+    '/exercise',
+    '/exercise/realtime',
+    '/coupon',
+  ].includes(pathname) //The path that should not have BackLink
+
+  const [isExpanded, setIsExpanded] = useState(0);
+
+  const NavReLink = ({ title, path }) => {
+    return (
+      <NavLink className="nav-link d-inline-flex" to={path} onClick={() => setIsExpanded(0)}>
+        <Text size='large'>{title}</Text>
+      </NavLink>
+    )
+  }
+
+  //${!props.isMenuVisible && 'd-none'}
+  return (
+    <Navbar
+      expand="lg"
+      className={`p-3`}
+      expanded={isExpanded}
+      onToggle={b => setIsExpanded(b ? 1 : 0)}
+    >
+      {back && !isExpanded ? <BackLink /> : <Spacer />}
+      <Navbar.Toggle aria-controls="basic-navbar-nav" as="div">
+        <IconButton color="dark" className="m-0">
+          <span className="material-symbols-sharp">
+            {isExpanded ? 'close' : 'menu'}
+          </span>
+        </IconButton>
+      </Navbar.Toggle>
+
+      <Navbar.Collapse id="nav-body" className={`${!isExpanded ? 'invisible' : 'vh-100'}`}>
+        <Nav className="mt-3">
+          <NavReLink icon="home" title="Home" path="/" />
+          <NavReLink icon="backpack" title="Backpack" path="/bag" />
+          <NavReLink icon="storefront" title="Market" path="/market" />
+          <NavReLink icon="confirmation_number" title="Coupon" path="/coupon" />
+          <NavReLink icon="account_circle" title="Profile" path="/profile" />
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }

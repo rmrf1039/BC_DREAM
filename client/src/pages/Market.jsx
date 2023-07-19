@@ -9,23 +9,31 @@ import { setDarkModeActivation, Container, IconButton, Button, Text } from "nes-
 
 const Market = (props) => {
   const [phase, setPhase] = useState(0);
-
-  useEffect(() => {
-    props.setIsMenuVisible(1);
-  });
-
+  
   return (
     <>
       {
-        phase === 0 &&
-        <Container title={`STEP: ${phase + 1}/3`} className="m-3">
-
-          <IconButton color="success" size="medium" className="w-100 mt-3">
-            <Text color="black" size='small' className="ms-2">Next Step</Text>
-            <span className="material-symbols-sharp text-dark float-end">step</span>
-          </IconButton>
+        phase >= 0 &&
+        <Container title={`STEP 1: Selection`} className="m-3">
         </Container>
       }
+      {
+        phase >= 1 &&
+        <Container title={`STEP 2: Customize`} className="m-3">
+        </Container>
+      }
+      {
+        phase >= 2 &&
+        <Container title={`STEP 3: Payment`} className="m-3">
+        </Container>
+      }
+
+      <div className="position-fixed bottom-0 start-50 translate-middle-x w-100 p-3 pb-5">
+        <IconButton color="success" size="medium" className="w-100">
+          <Text color="black" size="large">Next Step</Text>
+        </IconButton>
+      </div>
+
     </>
 
   );

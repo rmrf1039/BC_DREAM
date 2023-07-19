@@ -33,38 +33,37 @@ import Test from './pages/Test';
 
 export default function App() {
   const { isConnected } = useAccount()
-  const [isMenuVisible, setIsMenuVisible] = useState(true);
 
   // Router registry with metamask loggin state check
   return (
     <div id="App">
       { isConnected
         ? <Routes>
-            <Route element={<Layout isMenuVisible={isMenuVisible}  />}>
-              <Route index element={<Home setIsMenuVisible={setIsMenuVisible} />} />
-              <Route path='test' element={<Test setIsMenuVisible={setIsMenuVisible} />} />
-              <Route path='market' element={<Market setIsMenuVisible={setIsMenuVisible} />} />
-              <Route path='bag' element={<Bag setIsMenuVisible={setIsMenuVisible} />} />
-              <Route path='wear' element={<WearDetail setIsMenuVisible={setIsMenuVisible} />} />
-              <Route path='transfer' element={<Transfer setIsMenuVisible={setIsMenuVisible} />} />
-              <Route path='history' element={<History setIsMenuVisible={setIsMenuVisible} />} />
+            <Route element={<Layout  />}>
+              <Route index element={<Home />} />
+              <Route path='test' element={<Test />} />
+              <Route path='market' element={<Market />} />
+              <Route path='bag' element={<Bag />} />
+              <Route path='wear' element={<WearDetail />} />
+              <Route path='transfer' element={<Transfer />} />
+              <Route path='history' element={<History />} />
 
-              <Route path='register' element={<PersonalInfo setIsMenuVisible={setIsMenuVisible} />} />
-              <Route path='profile' element={<Profile setIsMenuVisible={setIsMenuVisible} />} />
-              <Route path='person_info' element={<PersonalInfo setIsMenuVisible={setIsMenuVisible} />} />
+              <Route path='register' element={<PersonalInfo />} />
+              <Route path='profile' element={<Profile />} />
+              <Route path='person_info' element={<PersonalInfo />} />
 
               <Route path='exercise/'>
-                <Route index element={<ExerciseChoosing setIsMenuVisible={setIsMenuVisible} />} />
-                <Route path='realtime' element={<ExerciseRealTime setIsMenuVisible={setIsMenuVisible} />} />
-                <Route path='result' element={<ExerciseResult setIsMenuVisible={setIsMenuVisible} />} />
-                <Route path='model3D' element={<ExerciseModel3D setIsMenuVisible={setIsMenuVisible} />} />
-                <Route path='instruction' element={<ExerciseInstruction setIsMenuVisible={setIsMenuVisible} />} />
+                <Route index element={<ExerciseChoosing />} />
+                <Route path='realtime' element={<ExerciseRealTime />} />
+                <Route path='result' element={<ExerciseResult />} />
+                <Route path='model3D' element={<ExerciseModel3D />} />
+                <Route path='instruction' element={<ExerciseInstruction />} />
 
               </Route>
 
               <Route path='coupon/' >
-                <Route index element={<CouponMarket setIsMenuVisible={setIsMenuVisible} />} />
-                <Route path='exchange' element={<CouponExchange setIsMenuVisible={setIsMenuVisible} />} />
+                <Route index element={<CouponMarket />} />
+                <Route path='exchange' element={<CouponExchange />} />
               </Route>
             </Route>
 

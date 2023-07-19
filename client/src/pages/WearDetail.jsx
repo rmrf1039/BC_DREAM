@@ -16,10 +16,6 @@ function useQuery() {
 const WearDetail = (props) => {
   const query = useQuery();
 
-  useEffect(() => {
-    props.setIsMenuVisible(0);
-  });
-
   const data = {
     tokenId: query.get("tokenId"),
     src: "https://i.seadn.io/gcs/files/e65f60618446f5d9897f2d5a97c30e76.png?auto=format&dpr=1&w=750",

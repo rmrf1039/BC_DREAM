@@ -24,10 +24,6 @@ const Transfer = (props) => {
   const { isSuccess, write } = useTransferFrom(toAddress, query.get("tokenId"));
 
   useEffect(() => {
-    props.setIsMenuVisible(0);
-  });
-
-  useEffect(() => {
     if (isSuccess) navigate("/bag");
   }, [isSuccess, navigate]);
 

@@ -10,7 +10,6 @@ const Profile = (props) => {
   const { disconnect } = useDisconnect()
 
   useEffect(() => {
-    props.setIsMenuVisible(1);
     setDarkModeActivation(0);
   });
 
