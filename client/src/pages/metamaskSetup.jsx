@@ -1,4 +1,4 @@
-import { Web3Modal, Web3Button } from '@web3modal/react'
+import { Web3Modal, Web3Button, useWeb3Modal } from '@web3modal/react'
 
 import { projectId, ethereumClient } from '../providers/WagmiProvider';
 
@@ -8,6 +8,8 @@ import metamaskLogo from '../assets/img/metamask_logo.png';
 
 
 export default function MetamaskSetup() {
+  //const { open, close } = useWeb3Modal() //later for customize connect waller button
+
   return (
     <>
       <Container className="vh-100 d-flex align-items-center justify-content-center flex-column">
