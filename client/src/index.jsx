@@ -9,7 +9,6 @@ import { WagmiProvider } from "./providers/WagmiProvider";
 import './assets/scss/app.scss';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-serviceWorkerRegistration.register();
 
 // Service registry: 
 // 1. Ｗeb3

@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 
-import { useEth } from "../providers/WagmiProvider";
+import { useListingWear } from '../contracts/WearContract';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,100 +9,18 @@ import Col from 'react-bootstrap/Col';
 import { setDarkModeActivation, Container, Toolbar, IconButton, Separator, Spacer, Heading, Button, Text } from "nes-ui-react";
 
 const Bag = (props) => {
-  const ethService = useEth();
-  const account = useMemo(() => (ethService.state?.accounts ? ethService.state.accounts[0] : null), [ethService.state.accounts]);
   const [tab, setTab] = useState(0);
 
   useEffect(() => {
     props.setIsMenuVisible(1);
   });
 
-  const getLastTokenId = useCallback(async () => {
-    return new Promise((resolve, reject) => {
-      if (!account) reject();
-
-      ethService.state.contract.methods.lastTokenId()
-        .call({ from: account })
-        .then((result) => {
-          resolve(result);
-        });
-    })
-      .catch((e) => { });
-  }, [account, ethService.state?.contract?.methods]);
-
-  const getURI = useCallback(async (tokenId) => {
-    return new Promise((resolve, reject) => {
-      if (!account) reject();
-
-      ethService.state.contract.methods.uri(tokenId)
-        .call({ from: account })
-        .then((result) => {
-          resolve(result);
-        });
-    })
-      .catch((e) => { });;
-  }, [account, ethService.state?.contract?.methods]);
-
-  const listingOwnedNft = useCallback(async () => {
-    return new Promise((resolve, reject) => {
-      if (!account) reject();
-
-      getLastTokenId()
-        .then((lastTokenId) => {
-          const addresses = [];
-          const tokens = [];
-
-          for (let i = 0; i <= lastTokenId - 1; i++) {
-            addresses.push(account);
-            tokens.push(i);
-          }
-
-          try {
-            ethService.state.contract.methods.balanceOfBatch(addresses, tokens)
-              .call({ from: account })
-              .then((result) => {
-                const heldNftUri = [];
-
-                Promise.all(result.map((bool, idx) => {
-                  if (parseInt(bool)) return getURI(idx).then((r) => heldNftUri.push({
-                    tokenId: idx,
-                    meta: r,
-                  }));
-
-                  return null;
-                }))
-                  .then(() => {
-                    resolve(heldNftUri);
-                  })
-                  .catch(() => {
-                    reject();
-                  });
-              });
-          } catch {
-            reject();
-          }
-        });
-    })
-      .catch((e) => { });;
-  }, [getLastTokenId, getURI, account, ethService]);
-
-  const data = useMemo(() => {
-    const data = [];
-
-    listingOwnedNft()
-      .then((list) => {
-        if (list) {
-          list.forEach((r) => {
-            data.push({
-              ...r,
-              src: "https://i.seadn.io/gcs/files/e65f60618446f5d9897f2d5a97c30e76.png?auto=format&dpr=1&w=750",
-            });
-          });
-        }
-      });
-
-    return data;
-  }, [listingOwnedNft]);
+  const data = useListingWear().map(r => {
+    return {
+      ...r,
+      src: "https://i.seadn.io/gcs/files/e65f60618446f5d9897f2d5a97c30e76.png?auto=format&dpr=1&w=750",
+    };
+  });
 
   // 之後替換成 fetch 後的 dataset
   /* const data = [{
