@@ -1,0 +1,43 @@
+// Override reboot.scss
+html.nes-ui {
+
+  cursor: var(--cursor-url), auto;
+
+  font-family: var(--font-family);
+
+  pre,
+  code,
+  kbd, 
+  samp {
+    font-family: var(--font-family);
+  }
+
+  body {
+    font-size: $font-size;
+    color: $base-color; 
+    background-color: var(--background-color);
+    -webkit-font-smoothing: antialiased; 
+  }
+
+  label {
+    cursor: inherit;
+  }
+
+  a,
+  button {
+    cursor: var(--cursor-click-url), pointer;
+  }
+
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
+    -webkit-appearance: none;
+  }
+
+  // Prevent stray pixels on focused inputs such as checkboxes and radios
+  input[type="radio"],
+  input[type="checkbox"] {
+    outline: 0;
+  }
+}

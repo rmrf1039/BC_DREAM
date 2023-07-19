@@ -1,0 +1,79 @@
+$disc: (
+  (0,0,0,1,1,0,0,0),
+  (0,0,1,1,1,1,0,0),
+  (0,1,1,1,1,1,1,0),
+  (0,1,1,1,1,1,1,0),
+  (0,0,1,1,1,1,0,0),
+  (0,0,0,1,1,0,0,0)
+  );
+
+$circle: (
+  (0,0,0,1,1,0,0,0),
+  (0,0,1,1,1,1,0,0),
+  (0,1,1,0,0,1,1,0),
+  (0,1,1,0,0,1,1,0),
+  (0,0,1,1,1,1,0,0),
+  (0,0,0,1,1,0,0,0)
+);
+
+@mixin list-before(
+  $class,
+  $disc-or-circle,
+  $colors: ($base-color, map-get($default-colors, 'shadow'))
+) {
+  &.nes-ui-is-#{$class} li::before {
+    position: absolute;
+    top: calc(50% - 8px);
+    left: -22px;
+    content: '';
+    transform: scale(0.75); 
+    @include pixelize(2px, $disc-or-circle, $colors);
+  }
+} 
+
+.nes-ui-list {
+
+  list-style-type: none;
+
+  &.nes-ui-is-small {
+    li {
+      font-size: 1em;
+    }
+  }
+
+  &.nes-ui-is-medium {
+    li {
+      font-size: 1.25em;
+    } 
+  }
+
+  &.nes-ui-is-large {
+    font-size: 1.5em;
+  }
+
+  &.nes-ui-is-xlarge {
+    font-size: 1.75em;
+  }
+  
+
+  & li {
+    position: relative;
+  }
+
+  @include list-before('disc', $disc);
+  @include list-before('circle', $circle);
+}
+
+.nes-ui-dark-mode {
+
+  .nes-ui-list {
+    $dark-colors: ($background-color, $base-color);
+    @include list-before('disc', $disc, $dark-colors);
+    @include list-before('circle', $circle, $dark-colors);
+
+    li {
+      color: $color-white;
+    }
+  }
+}
+

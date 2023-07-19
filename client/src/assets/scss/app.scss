@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-
+@import "./nes/nes-ui";
 @import "bootstrap/scss/functions"; 
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
 
 $primary: #7D3A6B;
 $secondary: #496183;
-$bgBlue: #17212F;
+$bgBlue: #000;
 $bgBlueLight: #1F2937;
 $bgLight: #807D7B;
 $danger: #EF4444;
@@ -44,35 +45,9 @@ $theme-colors: map-merge($theme-colors, (
 
 $headings-font-family: 'VT323', monospace;
 
-$input-bg: $inputBg;
-$input-border-color: $inputBorder;
-$input-placeholder-color: #6B7280;
-$input-color: $light;
-$input-focus-color: $light;
-$input-focus-bg: $inputBg;
-$input-focus-border-color: $light;
-$input-focus-box-shadow: none;
-$input-border-radius: 0;
-$input-border-width: 3px;
-$form-label-font-size: 1.5rem;
-
-$form-select-border-radius: 0;
-$form-select-border-width: 3px;
-$form-select-box-shadow: none;
-$form-select-bg: $inputBg;
-$form-select-border-color: $inputBorder;
-$form-select-indicator-color: $inputBorder;
-$form-select-indicator: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$form-select-indicator-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
-$form-select-color: $light;
-$form-select-focus-box-shadow: none;
-$form-select-focus-border-color: $light;
-
 @import "bootstrap";
 
-$body-bg: $lightPrimary;
-
-body {
-  color: $lightGray;
+html, body {
   font-family: 'VT323', monospace;
 }
 
@@ -89,19 +64,6 @@ a {
 }
 .btn .material-symbols-sharp {
   font-size: 18px;
-}
-.frosted-background {
-  -webkit-backdrop-filter: saturate(140%) blur(20px);
-  backdrop-filter: saturate(140%) blur(20px);
-
-  background-color: rgba(255, 255, 255, 1);
-  -webkit-transition-property: background-color, -webkit-backdrop-filter;
-  transition-property: background-color, -webkit-backdrop-filter;
-  transition-property: background-color, backdrop-filter;
-  transition-property: background-color, backdrop-filter, -webkit-backdrop-filter;
-}
-.skip-menu-padding-bottom {
-  padding-bottom: 67px !important;
 }
 .nft-items-grid > div {
   margin-bottom: 1.5rem;

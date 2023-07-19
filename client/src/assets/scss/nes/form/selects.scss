@@ -1,0 +1,140 @@
+.nes-ui-select {
+  // prettier-ignore
+  $dropdown: (
+    (1,1,1,1,1,1,1),
+    (1,1,1,1,1,1,1),
+    (0,1,1,1,1,1,0),
+    (0,1,1,1,1,1,0),
+    (0,0,1,1,1,0,0),
+    (0,0,0,1,0,0,0),
+  );
+  $dropdown-color: ($color-black, $default-color-shadow);
+ 
+  outline: none !important;
+  position: relative;
+  width: 100%;
+
+  select {
+    width: 100%;
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    cursor: var(--cursor-click-url), pointer;
+    border-radius: 0;
+    outline-color: var(--default-color-hover);
+    -webkit-appearance: none; 
+    appearance: none;
+    margin-bottom: 1em;
+
+    @include pixel-borders(
+      $corner-size: 1,
+      $border-size: ($border-size / 2),
+      $border-color: 'color-black-absolute',
+      $border-inset-color: false
+    );
+ 
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      outline: none;
+    }
+
+    &:invalid {
+      color: var(--disabled-color-shadow);
+    }
+  }
+
+  &::after {
+    @include pixelize(2px, $dropdown, $dropdown-color);
+    transform: scale(0.75);
+    position: absolute;
+    top: calc(50% - 11px);
+    right: 24px;
+    pointer-events: none;
+    content: '';
+  }
+
+  option {
+    padding: 0.25em;
+  }
+
+  $types:
+    "none" $color-white-absolute $color-white-absolute,
+    "success" $success-color-normal $success-color-hover,
+    "warning" $warning-color-normal $warning-color-hover,
+    "error" $error-color-normal $error-color-hover,
+    "disable" $disabled-color-normal $disabled-color-shadow;
+ 
+  @each $type in $types {
+    
+    &.nes-ui-is-#{nth($type, 1)} {
+      $color: nth($type, 2);
+
+      &::after {
+        color: var(--#{nth($type, 1)}-color-normal);
+      }
+
+      select {
+        @include pixel-borders(
+          $corner-size: 1,
+          $border-size: ($border-size / 2),
+          $border-color: '#{nth($type, 1)}-color-normal',
+          $border-inset-color: false
+        );
+        outline-color: var(--#{nth($type, 1)}-color-hover)
+      }
+    }
+  }
+
+
+  &.nes-ui-is-none {
+    select {
+      @include pixel-borders(
+        $corner-size: 1,
+        $border-size: ($border-size / 2),
+        $border-color: 'color-black-absolute',
+        $border-inset-color: false
+      );
+    }
+  }
+}
+
+.nes-ui-select.nes-ui-is-multiple {
+  &::after {
+    display: none;
+  }
+
+  select {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+  }
+}
+ 
+.nes-ui-dark-mode {
+  .nes-ui-select {
+    select {
+      color: var(--background-color);
+      background-color: var(--color-black);
+    } 
+
+    &.nes-ui-is-none {
+      select {
+        @include pixel-borders(
+          $corner-size: 1,
+          $border-size: calc($border-size / 2),
+          $border-color: 'color-white-absolute',
+          $border-inset-color: false
+        );
+      }
+    }
+  }
+}
+
+.nes-ui-select {
+
+  &.nes-ui-is-disabled {
+    @extend .nes-ui-is-disable;
+    color: var(--disabled-color-normal);
+    cursor: not-allowed;
+  }
+}

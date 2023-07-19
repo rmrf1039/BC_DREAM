@@ -1,45 +1,49 @@
 import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { useEth } from "../contexts/EthContext/EthProvider";
+import { useAccount, useDisconnect } from 'wagmi';
 import QRCode from "react-qr-code";
 
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
+import { setDarkModeActivation, Container, IconButton, Text, Heading } from "nes-ui-react";
 
 const Profile = (props) => {
-    const ethService = useEth();
+  const { address } = useAccount()
+  const { disconnect } = useDisconnect()
 
-    useEffect(() => {
-        props.setIsMenuVisible(1);
-    });
+  useEffect(() => {
+    props.setIsMenuVisible(1);
+    setDarkModeActivation(0);
+  });
 
-    const getAccount = () => {
-        if (ethService.state?.accounts) {
-            return ethService.state.accounts[0];
+  return (
+    <>
+      <Container title="Account Address" className="m-3">
+        {address ?
+          <div className="d-flex flex-column align-items-center justify-content-center pb-3">
+            <QRCode
+              value={address}
+              bgColor="transparent"
+              fgColor="#000"
+            />
+          </div>
+          :
+          <h1 className="text-center">Loading...</h1>
         }
+      </Container>
 
-        return null;
-    }
-
-    return (
-        <Container className="p-3">
-            <h1 className="mb-3">Profile</h1>
-
-            {getAccount() &&
-            <div className="d-flex flex-column align-items-center justify-content-center mb-3">
-                <h4>Account Address</h4>
-                <div style={{ background: 'white', padding: '16px'}}>
-                    <QRCode value={getAccount()} />
-                </div>
-            </div>
-            }
-            
-
-            <Link to="/person_info">
-                <Button variant="secondary" type="button" className="w-100 mt-3">Edit Personal Info</Button>
-            </Link>
-        </Container>
-    );
+      <div className="ps-3 pe-3">
+        <Link to="/person_info">
+          <IconButton color="primary" size="medium" className="w-100 mb-3">
+            <span className="material-symbols-sharp">edit</span>
+            <Text size='small' className="ms-2">Edit Profile</Text>
+          </IconButton>
+        </Link>
+        <IconButton color="error" size="medium" className="w-100" onClick={() => disconnect()}>
+          <span className="material-symbols-sharp">logout</span>
+          <Text size='small' className="ms-2">Logout</Text>
+        </IconButton>
+      </div>
+    </>
+  );
 }
 
 export default Profile;

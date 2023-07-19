@@ -1,20 +1,21 @@
 import React from 'react'
 
-import Form from 'react-bootstrap/Form';
+import { Input } from "nes-ui-react";
 
-const Input = (props) => {
+import Form from 'react-bootstrap/Form';
+const InputT = (props) => {
   return (
     <Form.Group className="mb-3" controlId={props.name || ''}>
-      <Form.Label>{props.title || ''}</Form.Label>
-      <Form.Control
+      <Input
         type={props.type || 'text'}
         name={props.name}
         placeholder={props.placeholder || ''}
         value={props.value}
+        label={props.title || ''}
         onChange={props.setValue}
       />
     </Form.Group>
   )
 }
 
-export default Input
+export default InputT

@@ -1,0 +1,36 @@
+hr.nes-ui-hr {
+  background-color: var(--color-black-absolute);
+  border-color: var(--color-black-absolute);
+  border: none; 
+
+  &.nes-ui-dark-mode {
+    background-color: var(--color-white-absolute);
+    border-color: var(--color-white-absolute);
+  }
+  height: 4px;
+
+  &.nes-ui-is-disabled {
+    background-color: map-get($disabled-colors, 'normal');
+    border-color: map-get($disabled-colors, 'normal');
+  }
+
+  &.nes-ui-is-warning {
+    background-color: map-get($warning-colors, 'normal');
+    border-color: map-get($warning-colors, 'normal');
+  }
+
+  &.nes-ui-is-primary {
+    background-color: map-get($primary-colors, 'normal');
+    border-color: map-get($primary-colors, 'normal');
+  }
+
+  &.nes-ui-is-error {
+    background-color: map-get($error-colors, 'normal');
+    border-color: map-get($error-colors, 'normal');
+  }
+
+  &.nes-ui-is-success {
+    background-color: map-get($success-colors, 'normal');
+    border-color: map-get($success-colors, 'normal');
+  }
+}

@@ -1,0 +1,83 @@
+$font-family: 'Press Start 2P', cursive !default;
+$font-size: 1rem !default;
+
+$base-color: #201F24 !default;
+$background-color: $color-white !default;
+
+$border-size: 4px !default;
+
+$default-colors: (
+  normal: $default-color-normal,
+  hover: $default-color-hover,
+  shadow: $default-color-shadow,
+) !default;
+ 
+$disabled-colors: (
+  normal: $disabled-color-normal,
+  shadow: $disabled-color-shadow,
+) !default;
+
+$primary-colors: (
+  normal: $primary-color-normal,
+  hover: $primary-color-hover,
+  shadow: $primary-color-shadow,
+) !default;
+
+$success-colors: (
+  normal: $success-color-normal,
+  hover: $success-color-hover,
+  shadow: $success-color-shadow,
+) !default;
+
+$warning-colors: (
+  normal: $warning-color-normal,
+  hover: $warning-color-hover,
+  shadow: $warning-color-shadow,
+) !default;
+
+$error-colors: (
+  normal: $error-color-normal,
+  hover: $error-color-hover,
+  shadow: $error-color-shadow,
+) !default;
+
+:root {
+  --font-family: 'VT323', monospace;
+  --cursor-url: #{$cursor-url};
+  --cursor-click-url: #{$cursor-click-url};
+  --border-size: 4px;
+  --font-size: 1rem;
+  --background-color: #{$color-white-absolute};
+ 
+  --color-white: #{$color-white};
+  --color-black: #{$color-black};
+
+  --color-black-absolute:  #{$color-black-absolute};
+  --color-white-absolute:  #{$color-white-absolute};
+
+  --contrast-alpha-color-normal: #{$contrast-alpha-color-normal};
+  --contrast-alpha-color-shadow: #{$contrast-alpha-color-shadow};
+
+  --default-color-normal:  #{$default-color-normal};
+  --default-color-hover:   #{$default-color-hover};
+  --default-color-shadow:  #{$default-color-shadow};
+
+  --disabled-color-normal: #{$disabled-color-normal};
+  --disabled-color-shadow: #{$disabled-color-shadow};
+
+  --primary-color-normal:  #{$primary-color-normal};
+  --primary-color-hover:   #{$primary-color-hover};
+  --primary-color-shadow:  #{$primary-color-shadow};
+
+  --success-color-normal:  #{$success-color-normal};
+  --success-color-hover:   #{$success-color-hover};
+  --success-color-shadow:  #{$success-color-shadow};
+
+  --warning-color-normal:  #{$warning-color-normal};
+  --warning-color-hover:   #{$warning-color-hover};
+  --warning-color-shadow:  #{$warning-color-shadow};
+
+  --error-color-normal:    #{$error-color-normal};
+  --error-color-hover:     #{$error-color-hover};
+  --error-color-shadow:    #{$error-color-shadow};
+}

@@ -1,0 +1,105 @@
+// shaded black and white (anachronistic vibe)
+$color-black:#000;
+$color-white: #EFEFEF; 
+
+// absolute black and white
+$color-black-absolute: #000;
+$color-white-absolute: #fff; 
+
+// contrast alpha colors (used for scrollbar)
+$contrast-alpha-color-normal: #999999bb; 
+$contrast-alpha-color-shadow: #99999933;
+
+// named colors
+$default-color-normal: #fefefe;
+$default-color-hover: #e7e7e7;
+$default-color-shadow: #adafbc;
+
+$disabled-color-normal: #888; 
+$disabled-color-shadow: #adafbc;
+
+$primary-color-normal: #209cee;
+$primary-color-hover: #108de0;
+$primary-color-shadow: #006bb3;
+
+$success-color-normal: #92cc41;
+$success-color-hover: #76c442;
+$success-color-shadow: #4aa52e;
+
+$warning-color-normal: #f7d51d;
+$warning-color-hover: #f2c409;
+$warning-color-shadow: #e59400;
+
+$error-color-normal: #e76e55;
+$error-color-hover: #ce372b;
+$error-color-shadow: #8c2022;
+
+// original palette colors
+// https://en.wikipedia.org/wiki/List_of_video_game_console_palettes#NES
+$color-00: #59595f;
+$color-01: #00008f;
+$color-02: #18008f;
+$color-03: #3f0077;
+$color-04: #550055;
+$color-05: #550011;
+$color-06: #550000;
+$color-07: #442200;
+$color-08: #333300;
+$color-09: #113300;
+$color-0A: #003311;
+$color-0B: #004444;
+$color-0C: #004466;
+$color-0D: #000000;
+$color-0E: #080808;
+$color-0F: #080808;
+
+$color-10: #aaaaaa;
+$color-11: #0044dd;
+$color-12: #5511ee;
+$color-13: #7700ee;
+$color-14: #9900bb;
+$color-15: #aa0055;
+$color-16: #993300;
+$color-17: #884400;
+$color-18: #666600;
+$color-19: #336600;
+$color-1A: #006600;
+$color-1B: #006655;
+$color-1C: #005588;
+$color-1D: #080808;
+$color-1E: #080808;
+$color-1F: #080808;
+
+$color-20: #eeeeee;
+$color-21: #4488ff;
+$color-22: #7777ff;
+$color-23: #9944ff;
+$color-24: #bb44ee;
+$color-25: #cc5599;
+$color-26: #dd6644;
+$color-27: #cc8800;
+$color-28: #bbaa00;
+$color-29: #77bb00;
+$color-2A: #22bb22;
+$color-2B: #22bb77;
+$color-2C: #22bbcc;
+$color-2D: #444444;
+$color-2E: #080808;
+$color-2F: #080808;
+
+$color-30: #eeeeee;
+$color-31: #99ccff;
+$color-32: #aaaaff;
+$color-33: #bb99ff;
+$color-34: #dd99ff;
+$color-35: #ee99dd;
+$color-36: #eeaaaa;
+$color-37: #eebb99;
+$color-38: #eedd88;
+$color-39: #bbdd88;
+$color-3A: #99dd99;
+$color-3B: #99ddbb;
+$color-3C: #99ddee;
+$color-3D: #aaaaaa;
+$color-3E: #080808;
+$color-3F: #080808;

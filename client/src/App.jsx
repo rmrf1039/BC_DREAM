@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
-import { useEth } from "./contexts/EthContext/EthProvider";
+import { useEth } from "./providers/WagmiProvider";
+
+import { useAccount } from 'wagmi'
 
 import Layout from './templates/Layout';
 
@@ -30,23 +32,13 @@ import ExerciseInstruction from "./pages/ExerciseInstruction";
 import Test from './pages/Test';
 
 export default function App() {
-  // Eth Service Example
-  const [isMetamaskLogged, setIsMetamaskLogged] = useState(false);
+  const { isConnected } = useAccount()
   const [isMenuVisible, setIsMenuVisible] = useState(true);
-  const ethService = useEth();
-
-  useEffect(() => {
-    if (ethService.state.web3 && ethService.state.accounts) {
-      setIsMetamaskLogged(true);
-    } else {
-      setIsMetamaskLogged(true); //default false
-    }
-  }, [ethService, setIsMetamaskLogged]);
 
   // Router registry with metamask loggin state check
   return (
     <div id="App">
-      { isMetamaskLogged
+      { isConnected
         ? <Routes>
             <Route element={<Layout isMenuVisible={isMenuVisible}  />}>
               <Route index element={<Home setIsMenuVisible={setIsMenuVisible} />} />

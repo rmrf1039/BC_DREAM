@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useEth } from "../contexts/EthContext/EthProvider";
+import { useEth } from "../providers/WagmiProvider";
 
 import Input from "../components/forms/Input"
 

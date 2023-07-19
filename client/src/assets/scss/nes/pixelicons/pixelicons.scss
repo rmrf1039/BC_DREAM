@@ -1,0 +1,46 @@
+$icon-size-small: 16px;
+$icon-size-medium: 24px;
+$icon-size-large: 32px;
+
+.nes-ui-pixelicon-wrapper {
+  display: block;
+}
+
+.nes-ui-pixelicon {
+  display: contents;
+
+  & * {
+    display: block;
+    background-repeat: no-repeat;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    background-size:cover;
+    background-position: center; 
+  } 
+  
+  &.nes-ui-is-size-medium {
+ 
+    & * {
+      width: $icon-size-medium;
+      height: $icon-size-medium;
+    }
+  }
+
+  &.nes-ui-is-size-large { 
+
+    & * {
+      width: $icon-size-large;
+      height: $icon-size-large;
+    }
+  }
+
+  &.nes-ui-is-size-small {
+
+    & * {
+      width: $icon-size-small;
+      height: $icon-size-small;
+    } 
+  }
+}

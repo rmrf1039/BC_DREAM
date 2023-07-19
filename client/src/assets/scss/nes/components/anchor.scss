@@ -1,0 +1,23 @@
+.nes-ui-anchor {
+  color: var(--color-white);
+  text-decoration: underline;
+
+  &.nes-ui-is-transparent {
+    background: none;
+    border: none;
+  }
+   
+  &.nes-ui-is-dense {
+    padding: 0;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--color-white);
+ 
+    &.nes-ui-is-transparent {
+      background: none;
+      border: none;
+    }
+  }
+}

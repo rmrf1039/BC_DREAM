@@ -1,0 +1,80 @@
+.nes-ui-text {
+  &.nes-ui-is-small {
+    font-size: 0.75em;
+  }
+
+  &.nes-ui-is-medium {
+    font-size: 1em;
+  }
+
+  &.nes-ui-is-large {
+    font-size: 1.25em;
+  }
+
+  &.nes-ui-is-xlarge {
+    font-size: 2em;
+  }
+
+  &.nes-ui-is-heading-small {
+    font-size: 1.25em;
+  }
+
+  &.nes-ui-is-heading-medium {
+    font-size: 1.5em;
+  }
+
+  &.nes-ui-is-heading-large {
+    font-size: 2em;
+  }
+
+  &.nes-ui-is-heading-xlarge {
+    font-size: 2em;
+  }
+
+  &.nes-ui-is-primary {
+    color: var(--primary-color-normal);
+  }
+
+  &.nes-ui-is-success {
+    color: var(--success-color-normal);
+  }
+
+  &.nes-ui-is-warning {
+    color: var(--warning-color-normal);
+  }
+
+  &.nes-ui-is-error {
+    color: var(--error-color-normal);
+  }
+
+  &.nes-ui-is-disabled {
+    color: var(--disabled-color-normal);
+  }
+
+  &.nes-ui-is-black {
+    color: var(--color-black);
+  }
+
+  &.nes-ui-is-white {
+    color: var(--color-white);
+  }
+}
+
+.nes-ui-block-text {
+  display: inline-block;
+  padding: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  &.nes-ui-is-shadow {
+    text-shadow: 1px 1px var(--color-white-absolute);
+  }
+}
+
+.nes-ui-dark-mode {
+  .nes-ui-block-text {
+    &.nes-ui-is-shadow {
+      text-shadow: 1px 1px var(--color-black-absolute);
+    }
+  }
+} 

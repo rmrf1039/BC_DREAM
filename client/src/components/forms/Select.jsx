@@ -1,23 +1,25 @@
 import Form from 'react-bootstrap/Form';
 
-const Select = (props) => {
+import { Select } from "nes-ui-react";
+
+const SelectT = (props) => {
 
   return (
     <Form.Group className="mb-3" controlId={props.name || ''}>
-      <Form.Label>{props.title || ''}</Form.Label>
-      <Form.Select
-        aria-label="select input"
+      <Select
         name={props.name}
         value={props.value}
+        label={props.title || ''}
         onChange={props.setValue}
+        
       >
-        <option value="" disabled>Choose</option>
+        <option value="" disabled hidden>Select...</option>
         {(props.options || []).map((option) => (
           <option key={option.value} value={option.value}>{option.label}</option>
         ))}
-      </Form.Select>
+      </Select>
     </Form.Group>
   )
 }
 
-export default Select;
+export default SelectT;

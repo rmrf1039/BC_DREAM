@@ -1,0 +1,146 @@
+
+@mixin border-style($color, $outline) {
+  @include pixel-borders(
+    $corner-size: 1,
+    $border-size: calc($border-size / 2),
+    $border-color: $color,
+    $border-inset-color: false
+  );
+}
+
+ 
+.nes-ui-input,
+.nes-ui-textarea {
+ 
+  width: calc(100%);
+  padding: 0.5em 1em;
+  background-clip: padding-box;
+  margin-bottom: 1em;
+
+  &.nes-ui-is-none {
+    @include border-style(
+      'color-black-absolute',
+      map-get($disabled-colors, 'shadow')
+    );
+  }
+
+  &.nes-ui-is-disabled {
+    @include border-style(
+      'disabled-color-normal',
+      map-get($disabled-colors, 'shadow')
+    );
+
+    color: map-get($disabled-colors, 'normal');
+    cursor: not-allowed;
+  }
+  &.nes-ui-is-warning {
+    @include border-style(
+      'warning-color-normal',
+      map-get($warning-colors, 'hover')
+    );
+  }
+  &.nes-ui-is-error {
+    @include border-style(
+      'error-color-normal',
+      map-get($error-colors, 'hover')
+    );
+  }
+
+  &.nes-ui-is-success {
+    @include border-style(
+      'success-color-normal',
+      map-get($success-colors, 'hover')
+    );
+  }
+ 
+  &.nes-ui-is-primary {
+    @include border-style(
+      'primary-color-normal',
+      map-get($primary-colors, 'hover')
+    );
+  }
+}
+
+.nes-ui-field {
+  > label {
+    display: block;
+  }
+
+  .nes-ui-input, 
+  .nes-ui-textarea {
+    display: block;
+  }
+
+  &.nes-ui-is-inline {
+    display: flex;
+    align-items: center;
+
+    > label {
+      flex-basis: 0;
+      flex-grow: 1;
+      margin: 0;
+      margin-right: 1.5rem;
+      text-align: right;
+    }
+
+    .nes-ui-input,
+    .nes-ui-textarea {
+      flex-basis: 0;
+      flex-grow: 5;
+    }
+  }
+}
+
+
+.nes-ui-dark-mode {
+  .nes-ui-input,
+  .nes-ui-textarea {
+
+    color: $background-color;
+    background-color: var(--color-black-absolute);
+
+    &.nes-ui-is-none { 
+      @include border-style(
+        'color-white-absolute', 
+        map-get($default-colors, 'hover')
+      );
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nes-ui-field.nes-ui-is-inline {
+    display: block;
+
+    > label {
+      margin-bottom: 0.5rem; // reboot.css:label
+      text-align: left;
+    }
+
+    .nes-ui-input {
+      max-width: 100%;
+    }
+  }
+}
+
+
+html.nes-ui {
+  textarea {
+    resize: none !important;
+  }
+
+  textarea,
+  input {
+    :focus,
+    :active {
+      outline: none;
+    }
+    outline: none;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    margin: 0;
+    padding: 0;
+  } 
+}

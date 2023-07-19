@@ -1,0 +1,81 @@
+.nes-ui-toolbar-wrapper {
+  &.nes-ui-has-rounded-corners {
+    @include pixel-borders(
+      $corner-size: 1,
+      $border-size: $border-size,
+      $border-color: 'contrast-alpha-color-shadow',
+      $border-inset-color: false
+    );
+  }
+}
+ 
+.nes-ui-dark-mode {
+  .nes-ui-toolbar-wrapper {
+    &.nes-ui-has-rounded-corners {
+        @include pixel-borders(
+          $corner-size: 1,
+          $border-size: $border-size,
+          $border-color: 'contrast-alpha-color-shadow',
+          $border-inset-color: false
+        );
+    }
+  }
+}
+
+.nes-ui-toolbar-wrapper {
+  &.nes-ui-is-borderless {
+    border: none;
+  }
+}
+
+.nes-ui-toolbar {
+  display: flex;
+  margin: 0;
+  padding: 4px;
+  flex-direction: row;
+  align-items: center; 
+  background-color: $color-20;
+
+  @include pixel-borders( 
+    $corner-size: 0,
+    $border-size: $border-size,
+    $border-color: 'contrast-alpha-color-normal',
+    $border-inset-color: false
+  );
+
+  > * {
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  .nes-ui-icon-button-wrapper,
+  .nes-ui-button-wrapper {
+    border: none;
+    margin-right: 4px;
+    display: flex;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.nes-ui-dark-mode {
+  .nes-ui-toolbar {
+    background-color: darken($color-00, 10%);
+    @include pixel-borders(
+      $corner-size: 0,
+      $border-size: $border-size,
+      $border-color: 'contrast-alpha-color-shadow',
+      $border-inset-color: false
+    );
+  }
+}
+
+.nes-ui-toolbar {
+  border-radius: 0 !important;
+  &.nes-ui-is-borderless {
+    border: none;
+  } 
+}

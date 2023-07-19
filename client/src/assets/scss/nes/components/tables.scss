@@ -1,0 +1,87 @@
+.nes-ui-table-responsive {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.nes-ui-table {
+  table-layout: fixed;
+  background-color: var(--color-white);
+
+  tr {
+    margin-left: -0.25em;
+  }
+
+  th,
+  td {
+    position: relative;
+    padding: 0.5rem;
+    word-wrap: break-word;
+    border-color: var(--color-black);
+    border-style: solid;
+    border-width: 0 0.25em 0.25em 0;
+
+    &:last-child {
+      border-right-width: 0;
+    }
+
+    &:last-child::before {
+      top: initial;
+      bottom: -0.25em;
+    }
+  }
+
+  &.nes-ui-is-centered th {
+    text-align: center;
+  }
+
+  &.nes-ui-is-bordered {
+    margin: 4px;
+    border-spacing: 0;
+    border-collapse: separate;
+
+    @include pixel-borders(
+      $corner-size: 1,
+      $border-size: $border-size,
+      $border-color: 'color-black-absolute',
+      $border-inset-color: false
+    );
+  }
+
+  tbody,
+  thead:last-child {
+    tr:last-child {
+      th,
+      td {
+        
+        border-bottom-width: 0;
+
+        &:first-child::after,
+        &:last-child::before {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.nes-ui-dark-mode {
+  .nes-ui-table {
+    color: var(--color-white);
+    background-color: var(--color-black);
+
+    &.nes-ui-is-bordered {
+      @include pixel-borders(
+        $corner-size: 1,
+        $border-size: $border-size,
+        $border-color: 'color-white-absolute',
+        $border-inset-color: false 
+      );
+    }
+
+    th,
+    td {
+      border-color: var(--color-white);
+    }
+  } 
+}

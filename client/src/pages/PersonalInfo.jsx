@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Input from "../components/forms/Input"
 import Select from "../components/forms/Select"
+
+import { setDarkModeActivation, Container, Button, Text } from "nes-ui-react";
 
 const Register = (props) => {
     useEffect(() => {
@@ -48,13 +48,8 @@ const Register = (props) => {
     }
 
     return (
-        <Container className="p-3">
-            <div className="mb-5">
-                <h1 className="text-center">Personal Information</h1>
-                <h3 className="text-center">Please fill the information below</h3>
-            </div>
-
-            <Form onSubmit={handleSubmit}>
+        <Container title="Profile" align="center" className="m-3">
+            <Form onSubmit={handleSubmit} className="text-start">
                 <Input name="name" title="Name" value={values.name} setValue={handleChange}></Input>
                 <Input name="email" title="Email" value={values.email} setValue={handleChange}></Input>
                 <Input name="birthday" title="Birthday" placeholder="yyyy/MM/dd" value={values.birthday} setValue={handleChange}></Input>
@@ -91,7 +86,7 @@ const Register = (props) => {
                         ></Select>
                     </Col>
                 </Row>
-                <Button variant="primary" type="submit" className="w-100 mt-3">Confirm</Button>
+                <Button color="primary" size="medium" type="submit" className="w-100">Confirm</Button>
             </Form>
         </Container>
     );

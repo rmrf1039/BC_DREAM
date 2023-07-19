@@ -1,0 +1,41 @@
+html.nes-ui { 
+  ::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+ 
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-white);
+
+    @include pixel-borders(
+      $corner-size: 1,
+      $border-size: $border-size,
+        $border-color: 'contrast-alpha-color-normal',
+        $border-inset-color: 'contrast-alpha-color-shadow' 
+    );
+  }
+
+  ::-webkit-scrollbar-corner {
+    display: none;
+  }
+  
+  &.nes-ui-dark-mode {
+    ::-webkit-scrollbar {
+      width: 16px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-black);
+
+      @include pixel-borders(
+        $corner-size: 1,
+        $border-size: $border-size,
+        $border-color: 'contrast-alpha-color-normal',
+        $border-inset-color: 'contrast-alpha-color-shadow'
+      );
+    }
+  }
+}

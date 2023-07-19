@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from 'react-router-dom';
 
 import App from "./App";
-import { EthProvider } from "./contexts/EthContext/EthProvider";
+import { WagmiProvider } from "./providers/WagmiProvider";
 
 import './assets/scss/app.scss';
 
@@ -14,10 +14,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 // 2. Router
 root.render(
   <React.StrictMode>
-    <EthProvider>
+    <WagmiProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </EthProvider>
+    </WagmiProvider>
   </React.StrictMode>
 );
