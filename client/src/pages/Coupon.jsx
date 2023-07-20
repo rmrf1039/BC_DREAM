@@ -1,6 +1,3 @@
-import { useEffect } from 'react';
-import { Link } from "react-router-dom";
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,13 +8,10 @@ import nikeLogoImg from '../assets/img/nike_logo.png';
 import adidasLogoImg from '../assets/img/adidas_logo.png';
 import worldgymLogoImg from '../assets/img/worldgym_logo.png';
 
-
-import { PixelBorder, Button } from 'nes-ui-react';
-
 const Coupon = ({ source, imgSrc, expired }) => {
   return (
     <Row className="m-0 mb-3 w-100 g-0 bg-lightGray" style={{
-      "box-shadow": "5px 5px 0 0 #B0B1B4",
+      "boxShadow": "5px 5px 0 0 #B0B1B4",
     }}>
       <Col xs={3} className={`${source} coupon-img bg-dark d-flex justify-content-center`}>
         <img className={`w-100`} src={imgSrc} alt="line logo"></img>

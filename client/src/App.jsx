@@ -1,7 +1,9 @@
-//import { } from 'react'
+import { useEffect} from 'react'
 import { Routes, Route } from 'react-router-dom';
 
 import { useAccount } from 'wagmi'
+
+import { setDarkModeActivation } from 'nes-ui-react';
 
 import Layout from './templates/Layout';
 
@@ -30,6 +32,10 @@ import ExerciseInstruction from "./pages/ExerciseInstruction";
 
 export default function App() {
   const { isConnected } = useAccount()
+
+  useEffect(() => {
+    setDarkModeActivation(0);
+  });
 
   // Router registry with metamask loggin state check
   return (

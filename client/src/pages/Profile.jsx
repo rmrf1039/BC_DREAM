@@ -1,17 +1,12 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAccount, useDisconnect } from 'wagmi';
 import QRCode from "react-qr-code";
 
-import { setDarkModeActivation, Container, IconButton, Text } from "nes-ui-react";
+import { Container, IconButton, Text } from "nes-ui-react";
 
-const Profile = (props) => {
+const Profile = () => {
   const { address } = useAccount()
   const { disconnect } = useDisconnect()
-
-  useEffect(() => {
-    setDarkModeActivation(0);
-  });
 
   return (
     <>
