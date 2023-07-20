@@ -5,7 +5,7 @@ import { useAccount } from 'wagmi'
 
 import Layout from './templates/Layout';
 
-import MetamaskSetup from './pages/MetamaskSetup';
+import WalletConnect from './pages/WalletConnect';
 import NotFound from './pages/NotFound';
 
 import Home from './pages/Home';
@@ -23,7 +23,7 @@ import ExerciseChoosing from './pages/ExerciseChoosing';
 import ExerciseResult from './pages/ExerciseResult';
 import ExerciseModel3D from './pages/ExerciseModel3D';
 import ExerciseRealTime from './pages/ExerciseRealTime';
-import CouponMarket from './pages/CouponMarket';
+import Coupon from './pages/Coupon';
 import CouponExchange from './pages/CouponExchange';
 import History from './pages/History';
 import ExerciseInstruction from "./pages/ExerciseInstruction";
@@ -54,18 +54,17 @@ export default function App() {
                 <Route path='result' element={<ExerciseResult />} />
                 <Route path='model3D' element={<ExerciseModel3D />} />
                 <Route path='instruction' element={<ExerciseInstruction />} />
-
               </Route>
 
               <Route path='coupon/' >
-                <Route index element={<CouponMarket />} />
+                <Route index element={<Coupon />} />
                 <Route path='exchange' element={<CouponExchange />} />
               </Route>
             </Route>
 
             <Route path='*' element={<NotFound />} />
           </Routes>
-      : <MetamaskSetup />
+      : <WalletConnect />
      }
     </div>
   );

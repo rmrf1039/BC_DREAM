@@ -67,7 +67,7 @@ export default function Menu() {
           <NavReLink icon="home" title="Home" path="/" />
           <NavReLink icon="backpack" title="Backpack" path="/bag" />
           <NavReLink icon="storefront" title="Market" path="/market" />
-          <NavReLink icon="confirmation_number" title="Coupon" path="/coupon" />
+          <NavReLink icon="confirmation_number" title="My Coupon" path="/coupon" />
           <NavReLink icon="account_circle" title="Profile" path="/profile" />
         </Nav>
       </Navbar.Collapse>
