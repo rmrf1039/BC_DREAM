@@ -16,17 +16,20 @@
 
   select {
     width: 100%;
-    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    padding: 0.1rem 2.5rem 0.1rem .5rem;
     cursor: var(--cursor-click-url), pointer;
     border-radius: 0;
     outline-color: var(--default-color-hover);
     -webkit-appearance: none; 
     appearance: none;
     margin-bottom: 1em;
+    color: $color-black-absolute;
+    background-color: $color-white-absolute;
+    font-size: 1.25rem;
 
     @include pixel-borders(
       $corner-size: 1,
-      $border-size: ($border-size / 2),
+      $border-size: 3px,
       $border-color: 'color-black-absolute',
       $border-inset-color: false
     );
@@ -77,7 +80,7 @@
       select {
         @include pixel-borders(
           $corner-size: 1,
-          $border-size: ($border-size / 2),
+          $border-size: 3px,
           $border-color: '#{nth($type, 1)}-color-normal',
           $border-inset-color: false
         );
@@ -91,7 +94,7 @@
     select {
       @include pixel-borders(
         $corner-size: 1,
-        $border-size: ($border-size / 2),
+        $border-size: 3px,
         $border-color: 'color-black-absolute',
         $border-inset-color: false
       );

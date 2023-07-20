@@ -45,42 +45,44 @@ const Register = (props) => {
   return (
     <Container title="Profile" alignTitle="center" className="m-3">
       <Form onSubmit={handleSubmit} className="text-start">
-        <Input name="name" title="Name" value={values.name} setValue={handleChange}></Input>
-        <Input name="email" title="Email" value={values.email} setValue={handleChange}></Input>
-        <Input name="birthday" title="Birthday" placeholder="yyyy/MM/dd" value={values.birthday} setValue={handleChange}></Input>
-        <Select
-          name="sex"
-          title="Sex"
-          value={values.sex}
-          setValue={handleChange}
-          options={[{
-            label: 'Male',
-            value: 'Male',
-          }, {
-            label: 'Female',
-            value: 'Female',
-          }]}
-        ></Select>
-        <Row>
-          <Col>
-            <Select
-              name="height"
-              title="Height (cm)"
-              value={values.height}
-              setValue={handleChange}
-              options={arrayRange(150, 190, 1)}
-            ></Select>
-          </Col>
-          <Col>
-            <Select
-              name="weight"
-              title="Weight (kg)"
-              value={values.weight}
-              setValue={handleChange}
-              options={arrayRange(40, 100, 1)}
-            ></Select>
-          </Col>
-        </Row>
+        <div className="mb-3">
+          <Input name="name" title="Name" value={values.name} setValue={handleChange}></Input>
+          <Input name="email" title="Email" value={values.email} setValue={handleChange}></Input>
+          <Input name="birthday" title="Birthday" placeholder="yyyy/MM/dd" value={values.birthday} setValue={handleChange}></Input>
+          <Select
+            name="sex"
+            title="Sex"
+            value={values.sex}
+            setValue={handleChange}
+            options={[{
+              label: 'Male',
+              value: 'Male',
+            }, {
+              label: 'Female',
+              value: 'Female',
+            }]}
+          ></Select>
+          <Row>
+            <Col>
+              <Select
+                name="height"
+                title="Height (cm)"
+                value={values.height}
+                setValue={handleChange}
+                options={arrayRange(150, 190, 1)}
+              ></Select>
+            </Col>
+            <Col>
+              <Select
+                name="weight"
+                title="Weight (kg)"
+                value={values.weight}
+                setValue={handleChange}
+                options={arrayRange(40, 100, 1)}
+              ></Select>
+            </Col>
+          </Row>
+        </div>
         <Button color="primary" size="medium" type="submit" className="w-100">Confirm</Button>
       </Form>
     </Container>

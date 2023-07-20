@@ -5,7 +5,7 @@ import { Select } from "nes-ui-react";
 const SelectT = (props) => {
 
   return (
-    <Form.Group className="mb-3" controlId={props.name || ''}>
+    <Form.Group className="nes-ui-field" controlId={props.name || ''}>
       <Select
         name={props.name}
         value={props.value}

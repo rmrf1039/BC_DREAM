@@ -2,7 +2,7 @@
 @mixin border-style($color, $outline) {
   @include pixel-borders(
     $corner-size: 1,
-    $border-size: calc($border-size / 2),
+    $border-size: 3px,
     $border-color: $color,
     $border-inset-color: false
   );
@@ -11,9 +11,9 @@
  
 .nes-ui-input,
 .nes-ui-textarea {
- 
   width: calc(100%);
-  padding: 0.5em 1em;
+  padding: 0.1em .5em;
+  font-size: 1.25rem;
   background-clip: padding-box;
   margin-bottom: 1em;
 
@@ -64,6 +64,8 @@
 .nes-ui-field {
   > label {
     display: block;
+    font-size: 1.25rem;
+    margin-bottom: 0;
   }
 
   .nes-ui-input, 

@@ -5,7 +5,7 @@ import { Input } from "nes-ui-react";
 import Form from 'react-bootstrap/Form';
 const InputT = (props) => {
   return (
-    <Form.Group className="mb-3" controlId={props.name || ''}>
+    <Form.Group controlId={props.name || ''}>
       <Input
         type={props.type || 'text'}
         name={props.name}
