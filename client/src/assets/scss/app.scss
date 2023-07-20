@@ -87,6 +87,9 @@ a {
   }
 }
 
+.navbar {
+  z-index: 10;
+}
 .navbar-toggler {
   border: 0;
 }
@@ -95,6 +98,7 @@ a {
   position: relative;
 
   &.active {
+    pointer-events: none;
     padding-left: 24px;
 
     &::before {

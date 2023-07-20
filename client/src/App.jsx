@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+//import { } from 'react'
 import { Routes, Route } from 'react-router-dom';
-import { useEth } from "./providers/WagmiProvider";
 
 import { useAccount } from 'wagmi'
 
@@ -29,8 +28,6 @@ import CouponExchange from './pages/CouponExchange';
 import History from './pages/History';
 import ExerciseInstruction from "./pages/ExerciseInstruction";
 
-import Test from './pages/Test';
-
 export default function App() {
   const { isConnected } = useAccount()
 
@@ -41,7 +38,6 @@ export default function App() {
         ? <Routes>
             <Route element={<Layout  />}>
               <Route index element={<Home />} />
-              <Route path='test' element={<Test />} />
               <Route path='market' element={<Market />} />
               <Route path='bag' element={<Bag />} />
               <Route path='wear' element={<WearDetail />} />

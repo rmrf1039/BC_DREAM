@@ -1,9 +1,9 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAccount, useDisconnect } from 'wagmi';
 import QRCode from "react-qr-code";
 
-import { setDarkModeActivation, Container, IconButton, Text, Heading } from "nes-ui-react";
+import { setDarkModeActivation, Container, IconButton, Text } from "nes-ui-react";
 
 const Profile = (props) => {
   const { address } = useAccount()
@@ -15,7 +15,7 @@ const Profile = (props) => {
 
   return (
     <>
-      <Container title="Account Address" className="m-3">
+      <Container title="Account Address" alignTitle="center" className="m-3">
         {address ?
           <div className="d-flex flex-column align-items-center justify-content-center pb-3">
             <QRCode

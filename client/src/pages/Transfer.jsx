@@ -6,7 +6,7 @@ import { useAccount } from 'wagmi';
 import { isAddress, isAddressEqual } from 'viem';
 import { useTransferFrom } from '../contracts/WearContract';
 
-import { setDarkModeActivation, Container, IconButton, PixelIcon, Text, Br } from "nes-ui-react";
+import { Container, IconButton, PixelIcon, Text, Br } from "nes-ui-react";
 
 function useQuery() {
   const { search } = useLocation();

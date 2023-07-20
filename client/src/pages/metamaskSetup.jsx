@@ -8,7 +8,7 @@ import metamaskLogo from '../assets/img/metamask_logo.png';
 
 
 export default function MetamaskSetup() {
-  //const { open, close } = useWeb3Modal() //later for customize connect waller button
+  const { open, close } = useWeb3Modal() //later for customize connect waller button
 
   return (
     <>

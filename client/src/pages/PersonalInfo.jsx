@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Input from "../components/forms/Input"
 import Select from "../components/forms/Select"
 
-import { setDarkModeActivation, Container, Button, Text } from "nes-ui-react";
+import { Container, Button } from "nes-ui-react";
 
 const Register = (props) => {
     // Initial values
@@ -44,7 +44,7 @@ const Register = (props) => {
     }
 
     return (
-        <Container title="Profile" align="center" className="m-3">
+        <Container title="Profile" alignTitle="center" className="m-3">
             <Form onSubmit={handleSubmit} className="text-start">
                 <Input name="name" title="Name" value={values.name} setValue={handleChange}></Input>
                 <Input name="email" title="Email" value={values.email} setValue={handleChange}></Input>

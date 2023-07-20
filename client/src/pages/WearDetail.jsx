@@ -1,19 +1,15 @@
-import React, { useEffect } from 'react';
+import { useMemo } from 'react';
 import { Link, useLocation } from "react-router-dom";
 
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
-import { setDarkModeActivation, Container, Button, Text, Br, Badge, BadgeSplitted, Progress, IconButton } from "nes-ui-react";
+import { Container, Text, Badge, BadgeSplitted, Progress, IconButton } from "nes-ui-react";
 
 function useQuery() {
   const { search } = useLocation();
 
-  return React.useMemo(() => new URLSearchParams(search), [search]);
+  return useMemo(() => new URLSearchParams(search), [search]);
 }
 
-const WearDetail = (props) => {
+const WearDetail = () => {
   const query = useQuery();
 
   const data = {

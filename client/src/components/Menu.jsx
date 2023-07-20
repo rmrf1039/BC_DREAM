@@ -62,7 +62,7 @@ export default function Menu() {
         </IconButton>
       </Navbar.Toggle>
 
-      <Navbar.Collapse id="nav-body" className={`${!isExpanded ? 'invisible' : 'vh-100'}`}>
+      <Navbar.Collapse id="nav-body" className={`${!isExpanded ? 'invisible' : 'vh-100'} bg-light`}>
         <Nav className="mt-3">
           <NavReLink icon="home" title="Home" path="/" />
           <NavReLink icon="backpack" title="Backpack" path="/bag" />

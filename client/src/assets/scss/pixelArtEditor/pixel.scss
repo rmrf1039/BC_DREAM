@@ -1,0 +1,15 @@
+@import "../app.scss";
+
+#pixels.border-0 .pixel{
+  border-width: 0;
+}
+
+.pixel {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0.5px solid $lightGray;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

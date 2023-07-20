@@ -1,9 +1,4 @@
-import { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-
-import { useListingWear } from '../contracts/WearContract';
-
-const Home = (props) => {
+const Home = () => {
   return (
     <header >
       <h1>Hi! <span className="text-primary">CYLU</span>,</h1>
