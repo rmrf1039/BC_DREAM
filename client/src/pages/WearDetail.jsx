@@ -22,10 +22,11 @@ const WearDetail = () => {
   return (
     <>
       <Container roundedCorners className="m-3 mt-0 inventory">
-        <div className="d-flex mb-3">
-          <div>
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <Text size="large" className="text-gray m-0">LV.1/20</Text>
+          <div className="position-relative">
             <Button borderInverted color="warning" size="small" fontColor="black" onClick={() => setShowMoreMenu(true)}>Actions</Button>
-            <Menu className="bg-light" open={showMoreMenu} modal onClose={() => setShowMoreMenu(false)}>
+            <Menu className="bg-light right-0" open={showMoreMenu} modal onClose={() => setShowMoreMenu(false)}>
               <IconButton color="success" size="small" onClick={() => { }}>
                 <span className="material-symbols-sharp">confirmation_number</span>
                 <Text size="small">Exchange</Text>
@@ -43,7 +44,7 @@ const WearDetail = () => {
             <img src={data.src} alt="nft" className="w-100" />
           </div>
         </div>
-        <Heading  bottomBr dense size="large" className="mb-3 pt-0 text-center text-decoration-underline">LV.MAX Magic Hat</Heading>
+        <Heading bottomBr dense size="xlarge" className="mb-3 pt-0 text-center">Magic Hat</Heading>
         <div className="mb-3">
           <Badge backgroundColor="warning" text="Epic" color='#000' />
           <BadgeSplitted textLeft='20%' backgroundColor="error" text="Exp Bonus" />
