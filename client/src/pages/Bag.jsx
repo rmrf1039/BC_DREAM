@@ -1,16 +1,13 @@
-import { useState, useEffect } from 'react'
+//import { } from 'react'
 import { Link } from "react-router-dom";
 
 import { useListingWear } from '../contracts/WearContract';
 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container } from "nes-ui-react";
 
-import { setDarkModeActivation, Container, Toolbar, IconButton, Separator, Spacer, Heading, Button, Text } from "nes-ui-react";
+import '../assets/scss/inventory.scss';
 
-const Bag = (props) => {
-  const [tab, setTab] = useState(0);
-
+const Bag = () => {
   const data = useListingWear().map(r => {
     return {
       ...r,
@@ -44,55 +41,29 @@ const Bag = (props) => {
 
   return (
     <>
-      <div className="ps-3 pe-3">
-        <Toolbar borderless roundedCorners={false}>
-          <IconButton color="primary" size="small" onClick={() => setTab(!tab ? 1 : tab - 1)}>
-            <span className="material-symbols-sharp text-light">chevron_left</span>
-          </IconButton>
-          <Separator />
-          <Spacer />
-          <Text size="large">
-            {
-              tab === 0 && "Current Loaded Wears"
-            }
-            {
-              tab === 1 && "Others Wears"
-            }
-          </Text>
-          <Spacer />
-          <Separator />
-          <IconButton color="primary" size="small" onClick={() => setTab(tab === 1 ? 0 : tab + 1)}>
-            <span className="material-symbols-sharp text-light">chevron_right</span>
-          </IconButton>
-        </Toolbar>
-      </div>
-
-      <div className="p-3 pt-4">
-        {
-          tab === 0 &&
-          <>
-            Current Wears
-          </>
-        }
-        {
-          tab === 1 &&
-          <>
-            <Container title="Supplies" className="m-0"></Container>
-            <br />
-            <Container title="Other Wears" className="m-0 pb-2">
-              <Row>
-                {(data || []).map((item) => (
-                  <Col xs={4} key={item.tokenId} className="mb-4">
-                    <Link to={`/wear?tokenId=${item.tokenId}`}>
-                      <img src={item.src} className="img-fluid rounded-start" alt={item.src} />
-                    </Link>
-                  </Col>
-                ))}
-              </Row>
-            </Container>
-          </>
-        }
-      </div>
+      <Container roundedCorners className="m-3 mt-0 inventory">
+        <h1>Inventory</h1>
+        <div className="boxes9 mb-4">
+          {
+            (data || []).map((item) => (
+              <Link key={item.tokenId} to={`/wear?tokenId=${item.tokenId}`}>
+                <div className="box">
+                  <img src={item.src} className="img-fluid rounded-start" alt={item.src} />
+                </div>
+              </Link>
+            ))
+          }
+          {[...Array(data.length < 9 ? 9 - data.length : 3 - (data.length % 3))].map((x, i) =>
+            <div className="box" key={i}></div>
+          )}
+        </div>
+        <h1>Items</h1>
+        <div className="boxes3">
+          <div className="box"></div>
+          <div className="box"></div>
+          <div className="box"></div>
+        </div>
+      </Container>
     </>
   );
 }

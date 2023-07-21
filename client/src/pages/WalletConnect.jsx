@@ -1,8 +1,8 @@
-import { Web3Modal, Web3Button, useWeb3Modal } from '@web3modal/react'
+import { Web3Modal, useWeb3Modal } from '@web3modal/react'
 
 import { projectId, ethereumClient } from '../providers/WagmiProvider';
 
-import { IconButton, Text, Br } from 'nes-ui-react';
+import { IconButton, Text, Br, Heading } from 'nes-ui-react';
 
 import metamaskLogo from '../assets/img/metamask_logo.png';
 
@@ -14,9 +14,7 @@ export default function MetamaskSetup() {
     <>
       <div className="vh-100 bg-lightGray d-flex align-items-center justify-content-center flex-column">
         <img src={metamaskLogo} width={"300"} alt="metamask logo" />
-        <h1 className="mb-5" style={{
-          "fontFamily": "'Press Start 2P', cursive"
-        }}>Welcome</h1>
+        <Heading size="large" className="mb-5 text-center">Welcome to DREAM</Heading>
         <Br />
         <Br />
         <Br />

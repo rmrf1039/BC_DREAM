@@ -1,7 +1,7 @@
-import { useMemo } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import { useState, useMemo } from 'react';
+import { useNavigate, useLocation } from "react-router-dom";
 
-import { Container, Text, Badge, BadgeSplitted, Progress, IconButton } from "nes-ui-react";
+import { Container, Text, Badge, BadgeSplitted, Progress, IconButton, Menu, Heading, Button, Separator, Hr } from "nes-ui-react";
 
 function useQuery() {
   const { search } = useLocation();
@@ -11,6 +11,8 @@ function useQuery() {
 
 const WearDetail = () => {
   const query = useQuery();
+  const navigate = useNavigate();
+  const [showMoreMenu, setShowMoreMenu] = useState(false)
 
   const data = {
     tokenId: query.get("tokenId"),
@@ -19,37 +21,43 @@ const WearDetail = () => {
 
   return (
     <>
-      <Container title="LV. 1/20" alignTitle="right" className="m-3">
-        <img src={data.src} alt="nft" className="w-100 mb-3" />
-        <div className="mb-2">
+      <Container roundedCorners className="m-3 mt-0 inventory">
+        <div className="d-flex mb-3">
+          <div>
+            <Button borderInverted color="warning" size="small" fontColor="black" onClick={() => setShowMoreMenu(true)}>Actions</Button>
+            <Menu className="bg-light" open={showMoreMenu} modal onClose={() => setShowMoreMenu(false)}>
+              <IconButton color="success" size="small" onClick={() => { }}>
+                <span className="material-symbols-sharp">confirmation_number</span>
+                <Text size="small">Exchange</Text>
+              </IconButton>
+              <Separator horizontal />
+              <IconButton color="error" size="small" onClick={() => navigate(`/transfer?tokenId=${data.tokenId}`)}>
+                <span className="material-symbols-sharp">currency_exchange</span>
+                <Text size="small">Transfer</Text>
+              </IconButton>
+            </Menu>
+          </div>
+        </div>
+        <div className="boxes1 mb-3">
+          <div className="box">
+            <img src={data.src} alt="nft" className="w-100" />
+          </div>
+        </div>
+        <Heading  bottomBr dense size="large" className="mb-3 pt-0 text-center text-decoration-underline">LV.MAX Magic Hat</Heading>
+        <div className="mb-3">
           <Badge backgroundColor="warning" text="Epic" color='#000' />
           <BadgeSplitted textLeft='20%' backgroundColor="error" text="Exp Bonus" />
         </div>
-        <div>
-          <Text size="large" className="m-0">Lucky</Text>
+        <div className="mb-3">
+          <Text size="medium" className="mb-1">Lucky</Text>
           <Progress value="30" max="100" color="warning" />
         </div>
         <div>
-          <Text size="large" className="m-0">Work Max</Text>
+          <Text size="medium" className="mb-1">Work Max</Text>
           <Progress value="60" max="100" color="success" />
         </div>
-
-      </Container>
-      <Container title="Control" alignTitle="right" className="m-3 mt-4">
-        <div className="mb-3">
-          <Link to={`/transfer?tokenId=${data.tokenId}`}>
-            <IconButton color="error" size="medium" className="w-100">
-              <span className="material-symbols-sharp">currency_exchange</span>
-              <Text size='small' className="ms-2">Transfer</Text>
-            </IconButton>
-          </Link>
-        </div>
-        <Link to={`/transfer?tokenId=${data.tokenId}`}>
-          <IconButton color="primary" size="medium" className="w-100">
-            <span className="material-symbols-sharp">confirmation_number</span>
-            <Text size='small' className="ms-2">Exchange</Text>
-          </IconButton>
-        </Link>
+        <Hr />
+        <Button color="primary" size="medium" className="w-100">Use</Button>
       </Container>
     </>
   );

@@ -1,34 +1,34 @@
 .nes-ui-text {
   &.nes-ui-is-small {
-    font-size: 0.75em;
+    font-size: 0.5em;
   }
 
   &.nes-ui-is-medium {
-    font-size: 1.25em;
+    font-size: 0.75em;
   }
 
   &.nes-ui-is-large {
-    font-size: 1.25em;
+    font-size: 1em;
   }
 
   &.nes-ui-is-xlarge {
-    font-size: 2em;
-  }
-
-  &.nes-ui-is-heading-small {
     font-size: 1.25em;
   }
 
+  &.nes-ui-is-heading-small {
+    font-size: .5em;
+  }
+
   &.nes-ui-is-heading-medium {
-    font-size: 1.5em;
+    font-size: 0.75em;
   }
 
   &.nes-ui-is-heading-large {
-    font-size: 2em;
+    font-size: 1em;
   }
 
   &.nes-ui-is-heading-xlarge {
-    font-size: 2em;
+    font-size: 1.25em;
   }
 
   &.nes-ui-is-primary {

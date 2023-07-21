@@ -14,7 +14,7 @@ function useQuery() {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
-const Transfer = (props) => {
+const Transfer = () => {
   const query = useQuery();
   const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ const Transfer = (props) => {
   }, [isSuccess, navigate]);
 
   return (
-    <Container className="m-3">
+    <Container className="m-3 mt-0">
       <QrScanner
         onDecode={(result) => setToAddress(result)}
         onError={(error) => console.log(error?.message)}
@@ -38,9 +38,8 @@ const Transfer = (props) => {
           !isAddressEqual(toAddress, address) ?
             <>
               <Br />
-              <Text size="medium">
-                Transfer cannot be undo.
-                <br />
+              <Text size="medium" className="text-break text-center">
+                <p className="text-danger text-center">Transfer cannot be undo.</p>
                 Are you sure to send this Wear to address {toAddress}?
               </Text>
               <IconButton
@@ -51,14 +50,14 @@ const Transfer = (props) => {
                   args: [address, toAddress, query.get("tokenId"), 1, []],
                 })}
               >
-                <PixelIcon inverted={false} name="pixelicon-checkmark" size="small" className="me-2" />
-                <Text color="black" size="small">Confirm</Text>
+                <PixelIcon inverted={false} name="pixelicon-checkmark" size="medium" className="me-2" />
+                <Text color="black" size="large">Confirm</Text>
               </IconButton>
             </>
             :
-            <h2 className="text-center text-danger">Self transfer is prohibited</h2>
+            <Text className="text-center text-danger mt-3">Self transfer is prohibited</Text>
           :
-          <h2 className="text-center">Please scan the receiver's account address.</h2>
+          <Text className="text-center mt-3">Please scan the receiver's account address.</Text>
       }
     </Container>
   );

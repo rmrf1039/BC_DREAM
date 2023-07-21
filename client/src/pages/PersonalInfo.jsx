@@ -43,7 +43,7 @@ const Register = (props) => {
   }
 
   return (
-    <Container title="Profile" alignTitle="center" className="m-3">
+    <Container title="Profile" alignTitle="center" className="m-3 mt-0">
       <Form onSubmit={handleSubmit} className="text-start">
         <div className="mb-3">
           <Input name="name" title="Name" value={values.name} setValue={handleChange}></Input>

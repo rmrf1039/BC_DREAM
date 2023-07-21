@@ -1,0 +1,61 @@
+@import './app.scss';
+
+:root {
+  --slot-size: 5.5rem;
+}
+
+.box i {
+  font-size: calc(var(--slot-size) - 6px);
+  line-height: var(--slot-size);
+  width: var(--slot-size);
+  text-align: center;
+  color: #292929;
+}
+
+.box {
+  height: var(--slot-size);
+  width: var(--slot-size);
+  background-color: #B3B3B3;
+  box-shadow: 2px 2px 0 2px #fff,
+    -2px -2px 0 2px #555,
+    0 0 0 4px #8b8b8b;
+
+    &:hover {
+      background-color: #c3c3c3;
+    }
+}
+
+.boxes1 {
+  margin-left: 4px;
+  display: grid;
+  width: 100%;
+
+  .box {
+    width: 100%;
+    height: 100%;
+  }
+}
+.boxes3 {
+  margin-left: 4px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(3, calc(var(--slot-size) + 8px));
+  grid-template-rows: repeat(1, calc(var(--slot-size) + 8px));
+}
+.boxes9 {
+  margin-left: 4px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(3, calc(var(--slot-size) + 8px));
+  grid-template-rows: repeat(3, calc(var(--slot-size) + 8px));
+}
+
+h1 {
+  color: #8B8B8B !important;
+  display: inline-block;
+  width: 100%;
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 1rem !important;
+  margin-bottom: 1rem !important;
+  line-height: 30px;
+}

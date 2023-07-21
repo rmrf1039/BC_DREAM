@@ -10,7 +10,7 @@ const Profile = () => {
 
   return (
     <>
-      <Container title="Account Address" alignTitle="center" className="m-3">
+      <Container roundedCorners title="Account Address" alignTitle="center" className="m-3 mt-0">
         {address ?
           <div className="d-flex flex-column align-items-center justify-content-center pb-3">
             <QRCode
@@ -26,14 +26,14 @@ const Profile = () => {
 
       <div className="ps-3 pe-3">
         <Link to="/person_info">
-          <IconButton color="primary" size="medium" className="w-100 mb-3">
+          <IconButton color="primary" size="large" className="w-100 mb-3">
             <span className="material-symbols-sharp">edit</span>
-            <Text size='small' className="ms-2">Edit Profile</Text>
+            <Text size="large" className="ms-2">Edit Profile</Text>
           </IconButton>
         </Link>
-        <IconButton color="error" size="medium" className="w-100" onClick={() => disconnect()}>
+        <IconButton color="error" size="large" className="w-100" onClick={() => disconnect()}>
           <span className="material-symbols-sharp">logout</span>
-          <Text size='small' className="ms-2">Logout</Text>
+          <Text size="large" className="ms-2">Logout</Text>
         </IconButton>
       </div>
     </>

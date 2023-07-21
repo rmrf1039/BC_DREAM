@@ -2,6 +2,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import { Text } from 'nes-ui-react';
+
 import lineLogoImg from '../assets/img/line_logo.png';
 import mcLogoImg from '../assets/img/mcdonalds_logo.png';
 import nikeLogoImg from '../assets/img/nike_logo.png';
@@ -17,8 +19,8 @@ const Coupon = ({ source, imgSrc, expired }) => {
         <img className={`w-100`} src={imgSrc} alt="line logo"></img>
       </Col>
       <Col xs={9} className="d-flex flex-column justify-content-between p-3">
-        <h1 className="m-0">{ source.charAt(0).toUpperCase() + source.slice(1) } Coupon</h1>
-        <p className="text-gray m-0">{ expired }</p>
+        <Text size="large" className="">{source.charAt(0).toUpperCase() + source.slice(1)}</Text>
+        <Text size="small" className="text-gray m-0">{expired}</Text>
       </Col>
     </Row>
   );

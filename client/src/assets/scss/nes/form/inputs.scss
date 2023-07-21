@@ -12,8 +12,8 @@
 .nes-ui-input,
 .nes-ui-textarea {
   width: calc(100%);
-  padding: 0.1em .5em;
-  font-size: 1.25rem;
+  padding: 0.5em 1em;
+  font-size: .75em;
   background-clip: padding-box;
   margin-bottom: 1em;
 
@@ -64,8 +64,8 @@
 .nes-ui-field {
   > label {
     display: block;
-    font-size: 1.25rem;
-    margin-bottom: 0;
+    font-size: .75rem;
+    margin-bottom: .25em;
   }
 
   .nes-ui-input, 

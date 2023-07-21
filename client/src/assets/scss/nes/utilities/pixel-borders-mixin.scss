@@ -48,6 +48,8 @@
   --pixel-borders-image-2-color-white-absolute: #{url(pixel-borders-image(2, $color-white-absolute))};
   --pixel-borders-image-1-contrast-alpha-color-shadow: #{url(pixel-borders-image(1, $contrast-alpha-color-shadow))}; 
   --pixel-borders-image-1-contrast-alpha-color-normal: #{url(pixel-borders-image(1, $contrast-alpha-color-normal))};
+
+  --pixel-borders-image-1-gray-color-normal: #{url(pixel-borders-image(1, $gray-color-normal))};
 } 
 
 // Pixel border

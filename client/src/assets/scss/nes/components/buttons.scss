@@ -82,6 +82,10 @@
     }
   }
 
+  &.nes-ui-is-size-small .material-symbols-sharp {
+    font-size: 1.25rem;
+  }
+
   &:active:not(.nes-ui-btn-disabled) {
     & .nes-ui-text {
       margin-top: -2px;

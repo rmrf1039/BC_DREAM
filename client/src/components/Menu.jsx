@@ -13,8 +13,8 @@ function BackLink() {
     <Link onClick={() => navigate(-1)}>
       <div className="d-inline-block">
         <IconButton color="error">
-          <PixelIcon inverted name="pixelicon-close" size='small' className="me-2" />
-          <Text size='small'>Back</Text>
+          <PixelIcon inverted name="pixelicon-close" size="small" className="me-2" />
+          <Text size="medium">Back</Text>
         </IconButton>
       </div>
     </Link>
@@ -40,7 +40,7 @@ export default function Menu() {
   const NavReLink = ({ title, path }) => {
     return (
       <NavLink className="nav-link d-inline-flex" to={path} onClick={() => setIsExpanded(0)}>
-        <Text size='large'>{title}</Text>
+        <Text size="large">{title}</Text>
       </NavLink>
     )
   }
@@ -55,7 +55,7 @@ export default function Menu() {
     >
       {back && !isExpanded ? <BackLink /> : <Spacer />}
       <Navbar.Toggle aria-controls="basic-navbar-nav" as="div">
-        <IconButton color="dark" className="m-0">
+        <IconButton color="primary" className="m-0">
           <span className="material-symbols-sharp">
             {isExpanded ? 'close' : 'menu'}
           </span>

@@ -41,7 +41,7 @@ const Market = (props) => {
 
   return (
     <>
-      <Container title={`STEP 1: Set Goal`} className={`${phase !== 0 && 'd-none'} m-3`}>
+      <Container roundedCorners title={`STEP 1: Set Goal`} className={`${phase !== 0 && 'd-none'} m-3 mt-0`}>
         <Heading bottomBr dense size="xlarge" className="pt-0">A Dress Goal</Heading>
         <Text size="medium">Every type of dress has a different goal for the player to achieve.</Text>
         <Hr />
@@ -55,13 +55,13 @@ const Market = (props) => {
         </Text>
         <Br />
         <Text size="medium">Select your dress type:</Text>
-        <div className="d-flex justify-content-evenly">
+        <div className="d-flex justify-content-evenly flex-wrap">
           <Radio name="type" value="shirt" label="Shirt" checked={values.type === "shirt"} onChange={(b, evt) => handleChange(evt)} />
           <Radio name="type" value="pants" label="Pants" checked={values.type === "pants"} onChange={(b, evt) => handleChange(evt)} />
         </div>
       </Container>
 
-      <Container title={`STEP 2: Decide Quality`} className={`${phase !== 1 && 'd-none'} m-3`}>
+      <Container roundedCorners title={`STEP 2: Decide Quality`} className={`${phase !== 1 && 'd-none'} m-3 mt-0`}>
         <Heading bottomBr dense size="xlarge" className="pt-0">Better Makes It Faster</Heading>
         <Text size="medium">A good quality dress makes you more comfortable while excercising, but it also means more expensive.</Text>
         <Hr />
@@ -78,19 +78,19 @@ const Market = (props) => {
         </Text>
         <Br />
         <Text size="medium">Choose the quality:</Text>
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between flex-wrap">
           <Radio name="level" value="regular" label="Regular" checked={values.level === "regular"} onChange={(b, evt) => handleChange(evt)} />
           <Radio name="level" value="advanced" label="Advanced" checked={values.level === "advanced"} onChange={(b, evt) => handleChange(evt)} />
           <Radio name="level" value="high tech" label="High Tech" checked={values.level === "high tech"} onChange={(b, evt) => handleChange(evt)} />
         </div>
       </Container>
 
-      <Container title={`STEP 3: Customize`} className={`${phase !== 2 && 'd-none'} m-3`}>
+      <Container roundedCorners title={`STEP 3: Customize`} className={`${phase !== 2 && 'd-none'} m-3 mt-0`}>
         <Heading bottomBr dense size="xlarge" className="pt-0">Deco By You</Heading>
         <Editor setRef={values.drawRef} showBorder={drawerShowBorder} />
       </Container>
 
-      <Container title={`STEP 4: Summary`} className={`${phase !== 3 && 'd-none'} m-3`}>
+      <Container roundedCorners title={`STEP 4: Summary`} className={`${phase !== 3 && 'd-none'} m-3 mt-0`}>
         <Heading bottomBr dense size="xlarge" className="pt-0">Final Check</Heading>
         <Text size="medium">
           Dress Type: {values.type}
@@ -104,10 +104,10 @@ const Market = (props) => {
         <Text className="text-danger" size="medium">It'll be unchangeable after paying.</Text>
       </Container>
 
-      <Container title={`STEP 5: Payment`} className={`${phase !== 4 && 'd-none'} m-3`}>
+      <Container roundedCorners title={`STEP 5: Payment`} className={`${phase !== 4 && 'd-none'} m-3 mt-0`}>
         <Heading bottomBr dense size="xlarge" className="pt-0">Pay By</Heading>
         <IconButton className="w-100 mb-3" color="primary" size="medium" onClick={() => handleSubmit()}>
-          <Text color="black" size="large">Cash</Text>
+          <Text color="white" size="large">Cash</Text>
         </IconButton>
         <IconButton className="w-100 mb-3" color="disabled" size="medium">
           <Text color="black" size="large">Credit Card</Text>

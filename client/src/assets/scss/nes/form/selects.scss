@@ -16,7 +16,7 @@
 
   select {
     width: 100%;
-    padding: 0.1rem 2.5rem 0.1rem .5rem;
+    padding: 0.5em 2.5em 0.5em 1em;
     cursor: var(--cursor-click-url), pointer;
     border-radius: 0;
     outline-color: var(--default-color-hover);
@@ -25,7 +25,7 @@
     margin-bottom: 1em;
     color: $color-black-absolute;
     background-color: $color-white-absolute;
-    font-size: 1.25rem;
+    font-size: .75em;
 
     @include pixel-borders(
       $corner-size: 1,

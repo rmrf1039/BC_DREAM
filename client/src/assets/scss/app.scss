@@ -43,8 +43,6 @@ $theme-colors: map-merge($theme-colors, (
   "bgLight": $bgLight,
 ));
 
-$headings-font-family: 'VT323', monospace;
-
 $navbar-toggler-padding-y: 0;
 $navbar-toggler-padding-x: 0;
 $navbar-toggler-border-radius: 0;
@@ -57,7 +55,7 @@ $transition-collapse: none;
 @import "bootstrap";
 
 html, body {
-  font-family: 'VT323', monospace;
+  font-family: 'Press Start 2P', cursive;
 }
 
 a {
@@ -96,6 +94,7 @@ a {
 .nav-link {
   margin-bottom: 1rem;
   position: relative;
+  font-size: 1.25em;
 
   &.active {
     pointer-events: none;

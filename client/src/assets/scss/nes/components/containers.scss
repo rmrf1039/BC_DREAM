@@ -23,9 +23,9 @@
       display: table;
       padding: 0 0.5rem;
       margin: -1.8rem 0 1rem;
-      font-size: 1.5rem;
-      background-color: var(--color-black-absolute);
-      color: var(--color-white-absolute);
+      font-size: .75em;
+      background-color: var(--color-white);
+      color: var(--color-black-absolute);
     }
 
     &.nes-ui-is-center {
@@ -77,6 +77,22 @@
         }
       }
     }
+  }
+
+  &.inventory {
+    border-color: #8B8B8B;
+
+    .nes-ui-title {
+      background-color: #EFEFEF;
+      color: #000;
+    }
+
+    @include pixel-borders(
+      $corner-size: 1,
+      $border-size: $border-size,
+      $border-color: 'gray-color-normal',
+      $border-inset-color: false
+    );
   }
 }
 
