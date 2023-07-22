@@ -4,7 +4,7 @@ import Menu from '../components/Menu';
 
 const Layout = () => {
   return (
-    <div className="vh-100 vw-100 overflow-hidden">
+    <div className="vh-100 vw-100">
       <Menu />
       <Outlet />
     </div>

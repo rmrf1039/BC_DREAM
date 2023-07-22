@@ -12,11 +12,12 @@ const Profile = () => {
     <>
       <Container roundedCorners title="Account Address" alignTitle="center" className="m-3 mt-0">
         {address ?
-          <div className="d-flex flex-column align-items-center justify-content-center pb-3">
+          <div className="d-flex flex-column align-items-center justify-content-center">
             <QRCode
               value={address}
               bgColor="transparent"
               fgColor="#000"
+              className="w-100 h-100"
             />
           </div>
           :

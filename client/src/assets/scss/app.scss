@@ -8,6 +8,8 @@
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
 
+@import "react-datepicker/src/stylesheets/datepicker.scss";
+
 $primary: #7D3A6B;
 $secondary: #496183;
 $bgBlue: #000;
@@ -18,7 +20,7 @@ $light: #fff;
 $dark: #000;
 $lightPrimary: #9FA7ED;
 $lightGray: #EFEFEF;
-$gray: #B0B1B4;
+$gray: #8B8B8B;
 
 $btnBlue: #384151;
 
@@ -149,3 +151,61 @@ a {
   }
 }
 
+
+
+.react-datepicker {
+  width: 100%;
+  border: 0;
+  font-family: 'Press Start 2P', cursive;
+  
+  .react-datepicker__header {
+    background-color: transparent;
+    padding: 0;
+    padding-bottom: 1rem;
+    border: 0;
+  }
+
+  .react-datepicker__month-container {
+    float: none;
+
+    .react-datepicker__month {
+      margin: 0;
+    }
+  }
+
+  .react-datepicker__day-name {
+    @extend .text-gray;
+
+    width: calc((100% - 3rem) / 7);
+    margin: 0;
+    margin-right: .5rem;
+  }
+  
+  .react-datepicker__day {
+    width: calc((100% - 3rem) / 7);
+    margin: 0;
+    margin-right: .5rem;
+    margin-bottom: .5rem;
+    background-color: transparent;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  
+    .nes-ui-button-wrapper {
+      width: 100%;
+    }
+  }
+
+  .react-datepicker__week:last-of-type .react-datepicker__day {
+    margin-bottom: 0;
+  }
+
+  .react-datepicker__day--today .nes-ui-btn {
+    @extend .nes-ui-btn-primary;
+  }
+
+  .react-datepicker__day--highlighted .nes-ui-btn {
+    @extend .nes-ui-btn-success;
+  }
+}

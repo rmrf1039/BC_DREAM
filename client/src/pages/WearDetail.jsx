@@ -26,7 +26,7 @@ const WearDetail = () => {
           <Text size="large" className="text-gray m-0">LV.1/20</Text>
           <div className="position-relative">
             <Button borderInverted color="warning" size="small" fontColor="black" onClick={() => setShowMoreMenu(true)}>Actions</Button>
-            <Menu className="bg-light right-0" open={showMoreMenu} modal onClose={() => setShowMoreMenu(false)}>
+            <Menu className="bg-light end-0" open={showMoreMenu} modal onClose={() => setShowMoreMenu(false)}>
               <IconButton color="success" size="small" onClick={() => { }}>
                 <span className="material-symbols-sharp">confirmation_number</span>
                 <Text size="small">Exchange</Text>
@@ -44,10 +44,11 @@ const WearDetail = () => {
             <img src={data.src} alt="nft" className="w-100" />
           </div>
         </div>
-        <Heading bottomBr dense size="xlarge" className="mb-3 pt-0 text-center">Magic Hat</Heading>
-        <div className="mb-3">
-          <Badge backgroundColor="warning" text="Epic" color='#000' />
-          <BadgeSplitted textLeft='20%' backgroundColor="error" text="Exp Bonus" />
+        <div className="mb-3 d-flex flex-column justify-content-center align-items-center">
+          <div className="d-inline-block mb-1">
+            <Badge backgroundColor="warning" text="HiTech" color="#000" />
+          </div>
+          <Heading bottomBr dense size="xlarge" className="p-0 text-center text-decoration-none">«Magic Hat»</Heading>
         </div>
         <div className="mb-3">
           <Text size="medium" className="mb-1">Lucky</Text>

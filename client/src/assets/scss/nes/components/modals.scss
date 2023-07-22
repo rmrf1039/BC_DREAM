@@ -2,7 +2,7 @@
   padding: 4px;
   border-width: $border-size;
   display: block;
-  width: 80vw;
+  width: calc(100% - 2rem);
 
   > :last-child {
     margin-bottom: 0;
@@ -21,6 +21,7 @@
     margin: 8px;
     margin-top: 8px;
     margin-bottom: 8px;
+    font-size: .75em;
   }
 
   color: $base-color;
@@ -39,7 +40,7 @@
   }
   border-radius: none;
   z-index: 10000;
-  top: 100px;
+  top: 76px;
   position: fixed;
 } 
 

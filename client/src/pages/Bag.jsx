@@ -59,7 +59,13 @@ const Bag = () => {
         </div>
         <h1>Items</h1>
         <div className="boxes3">
-          <div className="box"></div>
+          <div className="box">
+          <Link key={0} to={`/wear?tokenId=0`}>
+                <div className="box">
+                  <img src="https://i.seadn.io/gcs/files/84cdc84313024124e63e677b017f3a34.png?auto=format&dpr=1&w=750" className="img-fluid rounded-start" alt="test img" />
+                </div>
+              </Link>
+          </div>
           <div className="box"></div>
           <div className="box"></div>
         </div>
