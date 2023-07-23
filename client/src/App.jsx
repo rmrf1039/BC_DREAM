@@ -20,8 +20,6 @@ import Bag from './pages/Bag';
 import WearDetail from './pages/WearDetail';
 import Transfer from './pages/Transfer';
 
-
-import ExerciseChoosing from './pages/ExerciseChoosing';
 import ExerciseResult from './pages/ExerciseResult';
 import ExerciseModel3D from './pages/ExerciseModel3D';
 import ExerciseRealTime from './pages/ExerciseRealTime';
@@ -55,7 +53,6 @@ export default function App() {
               <Route path='person_info' element={<PersonalInfo />} />
 
               <Route path='exercise/'>
-                <Route index element={<ExerciseChoosing />} />
                 <Route path='realtime' element={<ExerciseRealTime />} />
                 <Route path='result' element={<ExerciseResult />} />
                 <Route path='model3D' element={<ExerciseModel3D />} />

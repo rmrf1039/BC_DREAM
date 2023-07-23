@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { subDays, isBefore, isSameDay } from 'date-fns';
 
-import { Button, Toolbar, IconButton, Separator, Spacer, Text, Heading, Br, Hr } from 'nes-ui-react';
+import { Button, Toolbar, IconButton, Separator, Spacer, Text, Heading, Hr } from 'nes-ui-react';
 
 import ViewLogModal from '../components/ViewLogModal';
 
@@ -36,7 +36,6 @@ const renderHeaderContents = ({
         <span className="material-symbols-sharp text-light">chevron_right</span>
       </IconButton>
     </Toolbar>
-
   )
 }
 
@@ -78,6 +77,7 @@ const History = () => {
           highlightDates={highlightedDates}
           renderCustomHeader={renderHeaderContents}
           renderDayContents={renderDayContents}
+          filterDate={(date) => !isBefore(today, date)}
           inline
         />
       </div>

@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 
-import { Container, Text, Badge, BadgeSplitted, Progress, IconButton, Menu, Heading, Button, Separator, Hr } from "nes-ui-react";
+import { Container, Text, Badge, Progress, IconButton, Menu, Heading, Button, Separator, Hr } from "nes-ui-react";
 
 function useQuery() {
   const { search } = useLocation();

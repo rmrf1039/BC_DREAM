@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-import { Text, Button, Modal, Header, Spacer, ModalContent, Footer, IconButton, PixelIcon, Heading } from "nes-ui-react";
+import { Text, Modal, Header, Spacer, ModalContent, Footer, IconButton, PixelIcon, Heading } from "nes-ui-react";
 
 const ExcerciseSelection = ({ open, onClose, data }) => {
   return (
