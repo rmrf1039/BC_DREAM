@@ -4,14 +4,6 @@
   --slot-size: 5.5rem;
 }
 
-.box i {
-  font-size: calc(var(--slot-size) - 6px);
-  line-height: var(--slot-size);
-  width: var(--slot-size);
-  text-align: center;
-  color: #292929;
-}
-
 .box {
   height: var(--slot-size);
   width: var(--slot-size);
@@ -20,9 +12,21 @@
     -2px -2px 0 2px #555,
     0 0 0 4px #8b8b8b;
 
-    &:hover {
-      background-color: #c3c3c3;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #c3c3c3;
+  }
+
+  i {
+    font-size: calc(var(--slot-size) - 6px);
+    line-height: var(--slot-size);
+    width: var(--slot-size);
+    text-align: center;
+    color: #292929;
+  }
 }
 
 .boxes1 {
@@ -41,6 +45,19 @@
   display: grid;
   grid-template-columns: repeat(3, calc(var(--slot-size) + 8px));
   grid-template-rows: repeat(1, calc(var(--slot-size) + 8px));
+
+  .box {
+    position: relative;
+
+    span {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      color: $light;
+      text-shadow: 2px 2px 0 $gray;
+      font-size: 1.25em;
+    }
+  }
 }
 .boxes9 {
   margin-left: 4px;

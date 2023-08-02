@@ -33,7 +33,6 @@ const WagmiProvider = ({ children }) => {
       <WagmiConfig config={config}>
         {children}
       </WagmiConfig>
-      
     </>
   );
 }

@@ -9,7 +9,7 @@ function useQuery() {
   return useMemo(() => new URLSearchParams(search), [search]);
 }
 
-const WearDetail = () => {
+const GearDetail = () => {
   const query = useQuery();
   const navigate = useNavigate();
   const [showMoreMenu, setShowMoreMenu] = useState(false)
@@ -65,5 +65,5 @@ const WearDetail = () => {
   );
 }
 
-export default WearDetail;
+export default GearDetail;
 

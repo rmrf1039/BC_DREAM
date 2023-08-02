@@ -12,7 +12,7 @@ const InputT = (props) => {
         placeholder={props.placeholder || ''}
         value={props.value}
         label={props.title || ''}
-        onChange={props.setValue}
+        onChange={(v) => props.setValue(props.name, v)}
       />
     </Form.Group>
   )

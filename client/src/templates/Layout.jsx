@@ -2,10 +2,12 @@ import { Outlet} from "react-router-dom";
 
 import Menu from '../components/Menu';
 
-const Layout = () => {
+const Layout = ({ disableMenu = false }) => {
   return (
-    <div className="vh-100 vw-100">
-      <Menu />
+    <div className={`background vh-100 vw-100 ${disableMenu && 'pt-3'}`}>
+      {
+        !disableMenu && <Menu />
+      }
       <Outlet />
     </div>
   );

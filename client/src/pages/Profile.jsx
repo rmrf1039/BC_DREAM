@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import { useAccount, useDisconnect } from 'wagmi';
+import { useAccount } from 'wagmi';
+import { useAxios } from '../providers/AxiosProvider';
 import QRCode from "react-qr-code";
 
 import { Container, IconButton, Text } from "nes-ui-react";
 
 const Profile = () => {
   const { address } = useAccount()
-  const { disconnect } = useDisconnect()
+  const { logout } = useAxios()
 
   return (
     <>
@@ -32,7 +33,7 @@ const Profile = () => {
             <Text size="large" className="ms-2">Edit Profile</Text>
           </IconButton>
         </Link>
-        <IconButton color="error" size="large" className="w-100" onClick={() => disconnect()}>
+        <IconButton color="error" size="large" className="w-100" onClick={() => logout()}>
           <span className="material-symbols-sharp">logout</span>
           <Text size="large" className="ms-2">Logout</Text>
         </IconButton>

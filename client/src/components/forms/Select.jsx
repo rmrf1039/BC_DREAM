@@ -10,8 +10,7 @@ const SelectT = (props) => {
         name={props.name}
         value={props.value}
         label={props.title || ''}
-        onChange={props.setValue}
-        
+        onChange={(evt) => props.setValue(props.name, evt.target.value)}
       >
         <option value="" disabled hidden>Select...</option>
         {(props.options || []).map((option) => (

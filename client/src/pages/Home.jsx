@@ -22,7 +22,7 @@ const Home = () => {
 
   return (
     <>
-      <Container title="Dev Window" className="position-fixed top-0 ps-1 pb-1 pe-1" style={{
+      <Container title="Dev Window" className="d-none position-fixed top-0 ps-1 pb-1 pe-1" style={{
         zIndex: 10000
       }}>
         <Link to="exercise/result">

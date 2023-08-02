@@ -7,6 +7,12 @@ import { Container } from "nes-ui-react";
 
 import '../assets/scss/inventory.scss';
 
+import energyDrinkIcon from '../assets/img/things/energy_drink.png';
+import proteinIcon from '../assets/img/things/protein_powder.png';
+import dumbbelIcon from '../assets/img/things/dumbbel.png';
+
+import defaultCloth from '../assets/img/gear_icon/c1.png';
+
 const Bag = () => {
   const data = useListingWear().map(r => {
     return {
@@ -42,11 +48,11 @@ const Bag = () => {
   return (
     <>
       <Container roundedCorners className="m-3 mt-0 inventory">
-        <h1>Inventory</h1>
+        <h1>Gears</h1>
         <div className="boxes9 mb-4">
           {
             (data || []).map((item) => (
-              <Link key={item.tokenId} to={`/wear?tokenId=${item.tokenId}`}>
+              <Link key={item.tokenId} to={`/gear?tokenId=${item.tokenId}`}>
                 <div className="box">
                   <img src={item.src} className="img-fluid rounded-start" alt={item.src} />
                 </div>
@@ -54,18 +60,27 @@ const Bag = () => {
             ))
           }
           {[...Array(data.length < 9 ? 9 - data.length : 3 - (data.length % 3))].map((x, i) =>
-            <div className="box" key={i}></div>
+            <div className="box" key={i}>
+              <img src={defaultCloth} width={'80%'} className="img-fluid rounded-start" alt="defaultCloth" />
+            </div>
           )}
         </div>
         <h1>Items</h1>
         <div className="boxes3">
-          <Link key={0} to={`/wear?tokenId=0`}>
+          <Link key={0} to={`/gear?tokenId=0`}>
             <div className="box">
-              <img src="https://i.seadn.io/gcs/files/84cdc84313024124e63e677b017f3a34.png?auto=format&dpr=1&w=750" className="img-fluid rounded-start" alt="test img" />
+              <img src={energyDrinkIcon} width={'80%'} className="img-fluid rounded-start" alt="energyDrinkIcon" />
+              <span>0</span>
             </div>
           </Link>
-          <div className="box"></div>
-          <div className="box"></div>
+          <div className="box">
+            <img src={proteinIcon} width={'80%'} className="img-fluid rounded-start" alt="proteinIcon" />
+              <span>0</span>
+          </div>
+          <div className="box">
+            <img src={dumbbelIcon} width={'80%'} className="img-fluid rounded-start" alt="dumbbelIcon" />
+              <span>0</span>
+          </div>
         </div>
       </Container>
     </>
