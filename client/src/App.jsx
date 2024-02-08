@@ -1,4 +1,4 @@
-import { useEffect} from 'react'
+import { useReducer, useEffect} from 'react'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useAccount } from 'wagmi'
 import { useAxios } from './providers/AxiosProvider';
@@ -21,67 +21,91 @@ import GearDetail from './pages/GearDetail';
 import Transfer from './pages/Transfer';
 
 import ExerciseResult from './pages/ExerciseResult';
-import ExerciseModel3D from './pages/ExerciseModel3D';
-import ExerciseRealTime from './pages/ExerciseRealTime';
 import Coupon from './pages/Coupon';
 import CouponExchange from './pages/CouponExchange';
 import History from './pages/History';
-import ExerciseInstruction from "./pages/ExerciseInstruction";
+import ExerciseRealtime from "./pages/ExerciseRealtime";
 
 export default function App() {
-  const navigate = useNavigate();
   const { pathname } = useLocation();
-
   const { isConnected } = useAccount()
-  const { isInit, profile } = useAxios()
+  const { state } = useAxios()
+  const navigate = useNavigate();
+
+  const [layoutState, dispatch] = useReducer((state, action) => {
+    switch (action.type) {
+      case 'init': {
+        return {
+          isShowBack: false,
+          isShowMenu: false,
+          title: null,
+          backgroundColor: '#fff',
+          backgroundImage: null,
+          backgroundSize: '100% auto',
+          backgroundPositionY: '95%',
+          ...action.data,
+        };
+      }
+
+      default: {
+        throw Error('Unknown action.');
+      }
+    }
+  }, {
+    isShowBack: false,
+    isShowMenu: false,
+    title: null,
+    backgroundColor: '#fff',
+    backgroundImage: null,
+  });
 
   useEffect(() => {
     setDarkModeActivation(0);
   });
 
   useEffect(() => {
-    if (isInit && !profile) {
+    if (state.isNonced && !state.isRegistered) {
       navigate("/register");
-    } else if (isInit && profile && pathname === "/register") {
+    } else if (state.isNonced && state.isLogged && pathname === "/register") {
       navigate("/");
     }
-  }, [isInit, profile]);
+  }, [state, navigate, pathname]);
 
   // Router registry with metamask loggin state check
   return (
     <div id="App">
       { 
-        isConnected && isInit
+        isConnected && (state.isLogged || !state.isRegistered)
         ? 
         <Routes>
-          <Route element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path='market' element={<Market />} />
-            <Route path='bag' element={<Bag />} />
-            <Route path='gear' element={<GearDetail />} />
-            <Route path='transfer' element={<Transfer />} />
-            <Route path='history' element={<History />} />
+          <Route element={<Layout state={layoutState} dispatch={dispatch} />}>
+            {
+              state.isLogged
+              ?
+              <>
+                <Route index element={<Home layout={dispatch} />} />
+                <Route path='bag' element={<Bag layout={dispatch} />} />
+                <Route path='gear' element={<GearDetail layout={dispatch} />} />
+                <Route path='transfer' element={<Transfer layout={dispatch} />} />
+                <Route path='history' element={<History layout={dispatch} />} />
+                <Route path='profile' element={<Profile layout={dispatch} />} />
+                <Route path='person_info' element={<PersonalInfo layout={dispatch} />} />
 
-            <Route path='profile' element={<Profile />} />
-            <Route path='person_info' element={<PersonalInfo />} />
+                <Route path='exercise/'>
+                  <Route path='result' element={<ExerciseResult layout={dispatch} />} />
+                  <Route path='realtime' element={<ExerciseRealtime layout={dispatch} />} />
+                </Route>
 
-            <Route path='exercise/'>
-              <Route path='realtime' element={<ExerciseRealTime />} />
-              <Route path='result' element={<ExerciseResult />} />
-              <Route path='model3D' element={<ExerciseModel3D />} />
-              <Route path='instruction' element={<ExerciseInstruction />} />
-            </Route>
-
-            <Route path='coupon/' >
-              <Route index element={<Coupon />} />
-              <Route path='exchange' element={<CouponExchange />} />
-            </Route>
+                <Route path='market' element={<Market layout={dispatch} />} />
+                <Route path='coupon/' >
+                  <Route index element={<Coupon layout={dispatch} />} />
+                  <Route path='exchange' element={<CouponExchange layout={dispatch} />} />
+                </Route>
+              </>
+              :
+              <Route path='register' element={<PersonalInfo layout={dispatch} register />} />
+            }    
           </Route>
-
-          <Route element={<Layout disableMenu={true} />}>
-            <Route path='register' element={<PersonalInfo />} />
-          </Route>
-          
           <Route path='*' element={<NotFound />} />
         </Routes>
         :

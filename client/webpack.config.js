@@ -10,7 +10,7 @@ module.exports = {
   entry: "./src/index.jsx",
   output: {
     path: path.resolve(__dirname, "build"),
-    publicPath: '/'
+    publicPath: '/',
   },
   resolve: { extensions },
   devServer: {
@@ -44,6 +44,10 @@ module.exports = {
             loader: 'url-loader',
             options: {
               name: '[name].[ext]',
+              context: path.resolve(__dirname, "src/"),
+              outputPath: 'dist/',
+              publicPath: '../',
+              useRelativePaths: true,
             },
           },
         ],

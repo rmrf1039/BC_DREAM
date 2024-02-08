@@ -1,76 +1,87 @@
 import { useEffect, useState } from 'react';
+import { isBefore, isSameDay } from 'date-fns';
 import DatePicker from 'react-datepicker';
-import { subDays, isBefore, isSameDay } from 'date-fns';
+import axios from 'axios';
 
-import { Button, Toolbar, IconButton, Separator, Spacer, Text, Heading, Hr } from 'nes-ui-react';
+import { Button, Toolbar, IconButton, Separator, Spacer, Text, Hr } from 'nes-ui-react';
 
 import ViewLogModal from '../components/ViewLogModal';
 
 const today = new Date();
-const renderDayContents = (day, date) => {
-  if (isBefore(date, today)) return <Button size="small" color="error">{day}</Button>;
 
-  return <Button size="small" color="disabled">{day}</Button>;
-};
+const History = ({ layout = null }) => {
+  useEffect(() => {
+    layout?.({
+      type: 'init',
+      data: {
+        isShowMenu: true,
+        title: '運動日誌',
+        backgroundColor: '#E0DCDB',
+      }
+    });
+  }, [layout]);
 
-const renderHeaderContents = ({
-  date,
-  decreaseMonth,
-  increaseMonth,
-  prevMonthButtonDisabled,
-  nextMonthButtonDisabled,
-}) => {
-  if (date.getFullYear() >= today.getFullYear() && date.getMonth() >= today.getMonth()) nextMonthButtonDisabled = true;
-
-  return (
-    <Toolbar borderless roundedCorners={false} className="mb-3">
-      <IconButton color="primary" size="small" onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
-        <span className="material-symbols-sharp text-light">chevron_left</span>
-      </IconButton>
-      <Separator />
-      <Spacer />
-      <Text size="large">{date.getFullYear()}/{date.getMonth() + 1}</Text>
-      <Spacer />
-      <Separator />
-      <IconButton color="primary" size="small" onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-        <span className="material-symbols-sharp text-light">chevron_right</span>
-      </IconButton>
-    </Toolbar>
-  )
-}
-
-const History = () => {
   const [highlightedDates, setHighlightedDates] = useState([]);
   const [isViewLogModalOpen, setIsViewLogModalOpen] = useState(false);
-  const [viewLogModalData, setViewLogModalData] = useState();
+  const [selectedLogDate, setSelectedLogDate] = useState();
 
-  const getHistory = () => {
+  const getHistory = (date) => {
     //axios behavior to fetch month history for highlighting the days
-    const dates = [subDays(new Date(), 7), subDays(new Date(), 6), subDays(new Date(), 5), subDays(new Date(), 3)];
-    setHighlightedDates(dates);
+    axios.get(`/api/history/${date.getFullYear()}/${date.getMonth() + 1}/`)
+    .then((res) => {
+      const dates = res.data.map((d) => new Date(d));
+
+      setHighlightedDates(dates);
+    });
   }
 
   const getLog = (date) => {
     if (!highlightedDates.some(d => isSameDay(d, date))) return;
 
-    console.log(date);
-    //axios behavior to fetch the log data of the targeted date
-
-    setViewLogModalData({
-      date
-    });
+    setSelectedLogDate(date);
     setIsViewLogModalOpen(true);
   }
 
   useEffect(() => {
-    getHistory();
-  })
+    getHistory(today);
+  }, [])
+
+  const renderDayContents = (day, date) => {
+    if (isBefore(date, today)) return <Button size="small" color="error">{day}</Button>;
+  
+    return <Button size="small" color="disabled">{day}</Button>;
+  };
+  
+  const renderHeaderContents = ({
+    date,
+    decreaseMonth,
+    increaseMonth,
+    prevMonthButtonDisabled,
+    nextMonthButtonDisabled,
+  }) => {
+    if (date.getFullYear() >= today.getFullYear() && date.getMonth() >= today.getMonth()) nextMonthButtonDisabled = true;
+  
+    return (
+      <Toolbar borderless roundedCorners={false} className="mb-3">
+        <IconButton color="primary" size="small" onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+          <span className="material-symbols-sharp text-light">chevron_left</span>
+        </IconButton>
+        <Separator />
+        <Spacer />
+        <Text size="large">{date.getFullYear()}年{date.getMonth() + 1}月</Text>
+        <Spacer />
+        <Separator />
+        <IconButton color="primary" size="small" onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+          <span className="material-symbols-sharp text-light">chevron_right</span>
+        </IconButton>
+      </Toolbar>
+    )
+  }
 
   return (
     <>
       <div className="m-3 mt-0">
-        <Heading dense size="xlarge" className="pt-0">History</Heading>
-        <Text size="medium">Pick the day with green background to see the log.</Text>
+        <Text size="medium">點擊綠色按鈕查看當天運動紀錄。</Text>
         <Hr></Hr>
         <DatePicker
           onChange={date => getLog(date)}
@@ -79,9 +90,13 @@ const History = () => {
           renderDayContents={renderDayContents}
           filterDate={(date) => !isBefore(today, date)}
           inline
+          locale="zh-TW"
+          onMonthChange={(date) => {
+            getHistory(date);
+          }}
         />
       </div>
-      <ViewLogModal open={isViewLogModalOpen} onClose={() => setIsViewLogModalOpen(false)} data={viewLogModalData} />
+      <ViewLogModal open={isViewLogModalOpen} onClose={() => setIsViewLogModalOpen(false)} date={selectedLogDate} />
     </>
   );
 }

@@ -1,4 +1,5 @@
-import React, { createContext, useCallback, useContext, useMemo, useState, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { createContext, useContext, useMemo, useEffect, useReducer } from 'react';
 import { useAccount, useNetwork, useSignMessage, useDisconnect } from 'wagmi'
 import { getWalletClient, watchAccount } from '@wagmi/core'
 import { useCookies } from 'react-cookie';
@@ -13,19 +14,94 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const AxiosContext = createContext();
 
+function reducer(state, action) {
+  switch (action.type) {
+    case 'get_nonce': {
+      return {
+        ...state,
+        isNonced: true,
+        nonce: action.nonce,
+      };
+    }
+
+    case 'get_access_token': {
+      localStorage.setItem('access_token', action.access_token)
+
+      return {
+        ...state,
+        isAccessTokenExist: true,
+        access_token: action.access_token,
+      };
+    }
+
+    case 'remove_access_token': {
+      return {
+        ...state,
+        isAccessTokenExist: false,
+        access_token: null,
+      };
+    }
+
+    case 'get_refresh_token': {
+      return {
+        ...state,
+        isRefreshTokenExist: true,
+      };
+    }
+
+    case 'not_registered': {
+      return {
+        ...state,
+        isRegistered: false,
+      };
+    }
+
+    case 'get_login': {
+      return {
+        ...state,
+        isLogged: true,
+        isRegistered: true,
+      };
+    }
+
+    case 'logout': {
+      return {
+        isNonced: false,
+        nonce: null,
+        isAccessTokenExist: false,
+        access_token: null,
+        isRefreshTokenExist: false,
+        isRegistered: true,
+        isLogged: false,
+      };
+    }
+
+    default: {
+      throw Error('Unknown action.');
+    }
+  }
+}
+
 const AxiosProvider = ({ children }) => {
   const { isConnected, address } = useAccount()
   const { chain } = useNetwork()
   const { signMessageAsync } = useSignMessage()
   const { disconnect } = useDisconnect()
 
-  const [cookies, setCookies, removeCookies] = useCookies(['access_token', 'refresh_token', 'profile']);
+  const [cookies, setCookies, removeCookies] = useCookies(['profile']);
 
-  const [isInit, setIsInit] = useState(false);
-  const [nonce, setNonce] = useState(null);
-  const profile = useMemo(() => {
-    return cookies.profile ? cookies.profile : null;
-  }, [cookies.profile]);
+  const [state, dispatch] = useReducer(reducer, {
+    isNonced: false,
+    nonce: null,
+    isAccessTokenExist: false,
+    access_token: null,
+    isRefreshTokenExist: false,
+    isRegistered: true,
+    isLogged: false,
+  });
+  const profile = useMemo(() => (
+    cookies.profile ? cookies.profile : null
+  ), [cookies.profile]);
 
   const generateMessage = async () => {
     return new Promise(async (resolve, reject) => {
@@ -40,11 +116,11 @@ const AxiosProvider = ({ children }) => {
         const message = new SiweMessage({
           domain: window.location.host,
           address,
-          statement: 'Sign in to DREAM APP.',
+          statement: 'Sign in to Gymboy APP.',
           uri: window.location.origin,
           version: '1',
           chainId,
-          nonce: nonce.nonce,
+          nonce: state.nonce,
         });
 
         signMessageAsync({
@@ -73,9 +149,16 @@ const AxiosProvider = ({ children }) => {
           address: address
         }}))
         .then((res) => {
-          setCookies('access_token', res.data?.tokens?.access);
-          setCookies('refresh_token', res.data?.tokens?.refresh);
+          dispatch({
+            type: 'get_access_token',
+            access_token: res.data?.tokens?.access,
+          });
+
+          localStorage.setItem('refresh_token', res.data?.tokens?.refresh)
+          
+          // Set in cookie, PWA removed then refetch again to update the newest version
           setCookies('profile', res.data?.user);
+          dispatch({ type: 'get_login' });
           resolve();
         })
         .catch(() => {
@@ -95,9 +178,16 @@ const AxiosProvider = ({ children }) => {
           signature,
         })
         .then((res) => {
-          setCookies('access_token', res.data?.tokens?.access);
-          setCookies('refresh_token', res.data?.tokens?.refresh);
+          
+          dispatch({
+            type: 'get_access_token',
+            access_token: res.data?.tokens?.access,
+          });
+
+          localStorage.setItem('refresh_token', res.data?.tokens?.refresh)
+
           setCookies('profile', res.data?.user);
+          dispatch({ type: 'get_login' });
           resolve();
         })
         .catch((e) => {
@@ -134,74 +224,109 @@ const AxiosProvider = ({ children }) => {
     });
   }
 
-  const logout = () => {
-    if (cookies.access_token) axios.post('/user/logout/');
+  const updateProfile = async () => (
+    new Promise((resolve, reject) => {
+      axios.get(`/user/${address}/`)
+        .then((res) => {
+          setCookies('profile', { ...res.data });
+          resolve();
+        })
+        .catch(() => reject());
+    })
+  );
 
+  const logout = () => {
+    // Call server to logout
+    if (state.isAccessTokenExist) axios.post('/user/logout/');
+
+    // Disconnect wallet
     disconnect();
-    removeCookies('access_token');
-    removeCookies('refresh_token');
+
+    // Remove tokens
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('refresh_token')
+
+    // Remove profile
     removeCookies('profile');
-    setIsInit(false);
-    setNonce(null);
+
+    // Update status
+    dispatch({ type: 'logout' })
+  };
+
+  const refreshAccessToken = async () => {
+    return new Promise((resolve, reject) => {
+      dispatch({
+        type: 'remove_access_token',
+      });
+
+      axios.post('api/token/refresh/', {
+        refresh: localStorage.getItem('refresh_token'),
+      })
+      .then((res) => {
+        dispatch({
+          type: 'get_access_token',
+          access_token: res.data?.access,
+        });
+
+        resolve(res.data?.access);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+    });
   };
 
   watchAccount((account) => {
-    if (isInit && ((!profile && account.address) || (profile && profile.address !== account.address))) {
+    if (isConnected && ((!profile && account.address) || (profile && profile.address !== account.address))) {
       logout();
       window.location.reload();
     }
   })
 
   useEffect(() => {
-    if (cookies.access_token) {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + cookies.access_token;
-    } else {
-      delete axios.defaults.headers.common['Authorization'];
-    }
-  }, [cookies.access_token]);
-
-  useEffect(() => {
-    if (!isInit && nonce) {
-      // Check register status
-      if (nonce.redirect === '/signup') {
-        // Nagivate to signup page
-        setIsInit(true);
-        return;
-      }
-
+    if (state.isNonced) {
       // Perform login
-      signin()
+      /* signin()
       .then(() => {
-        setIsInit(true);
+        dispatch({ type: 'get_login' });
       })
       .catch((e) => {
         console.log("login failed", e);
         logout();
-      });
+      }); */
     }
-  }, [nonce]);
+  }, [state.isNonced]);
 
+  // Initial codes
   useEffect(() => {
     if (!isConnected) return
+
+    if (localStorage.getItem('access_token')) dispatch({
+      type: 'get_access_token',
+      access_token: localStorage.getItem('access_token'),
+    });
+    if (localStorage.getItem('refresh_token')) dispatch({ type: 'get_refresh_token' });
+    if (cookies.profile) dispatch({ type: 'get_login' });
   
     // Check Access Token existence
-    if (!cookies.access_token) {
+    if (!state.isAccessTokenExist) {
       // Check Refresh Token existence
-      if (cookies.refresh_token) {
+      if (state.isRefreshTokenExist) {
         // Only retrive access token, no loggin need
-        axios.post('api/token/refresh/', {
-          refresh: cookies.refresh_token,
-        })
-        .then((res) => {
-          setCookies('access_token', res.data?.access);
-          setIsInit(true);
-        });
+        refreshAccessToken()
       } else {
         // Check Wallet loggin status
         if (address) {
           axios.get(`user/nonce/?address=${address}`)
           .then((res) => {
-            setNonce({...res.data});
+            if (res.data?.redirect === '/signup') {
+              dispatch({ type: 'not_registered' });
+            }
+
+            dispatch({
+              type: 'get_nonce',
+              nonce: res.data.nonce
+            });
           })
           .catch((error) => {
             console.log("nonce get error");
@@ -209,25 +334,66 @@ const AxiosProvider = ({ children }) => {
         }
       }
     } else {
-      if (!profile) {
-        axios.get(`/user/${address}/`)
-        .then((res) => {
-          setCookies('profile', { ...res.data });
-          setIsInit(true);
-        });
-      } else {
-        setIsInit(true);
+      // Fetch profile if not presented in 
+      if (!state.isLogged) {
+        updateProfile().then(() => dispatch({ type: 'get_login' }));
       }
     }
   }, [isConnected]);
 
+  useEffect(() => {
+    // Bind access token to every axios request
+    const access_token = state.access_token;
+    
+    if (access_token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
+    } else {
+      delete axios.defaults.headers.common['Authorization'];
+    }
+  }, [state.isAccessTokenExist]);
+
+  useEffect(() => {
+    // Refreshing access token when its unavailable
+    axios.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        const config = error?.config;
+
+        if (
+          localStorage.getItem('refresh_token')
+          && error?.response?.status === 401
+          && !config?.sent
+          && config?.url !== 'api/token/refresh/'
+        ) {
+          config.sent = true;
+          localStorage.removeItem('access_token')
+
+          return new Promise((resolve) => {
+            refreshAccessToken()
+            .then((access_token) => {
+              config.headers['Authorization'] = `Bearer ${access_token}`;
+              resolve(axios(config));
+            })
+            .catch(() => {});
+          });
+        }
+
+        logout();
+
+        return Promise.reject(error);
+      }
+    );
+  }, []);
+
   return (
     <AxiosContext.Provider value={{
-      isInit,
+      state,
       profile,
       signup,
+      signin,
       alterUser,
       deleteUser,
+      updateProfile,
       logout,
     }}>
       {}

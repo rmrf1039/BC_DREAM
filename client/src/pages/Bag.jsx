@@ -1,88 +1,77 @@
-//import { } from 'react'
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
-import { useListingWear } from '../contracts/WearContract';
+import { wearImgs } from '../components/WearIconCollect';
+import energyDrinkIcon from '../assets/img/things/energy_drink.png';
+import proteinIcon from '../assets/img/things/protein_powder.png';
+import dumbbelIcon from '../assets/img/things/dumbbel.png';
+import ventIcon from '../assets/img/vent.png';
 
 import { Container } from "nes-ui-react";
 
 import '../assets/scss/inventory.scss';
 
-import energyDrinkIcon from '../assets/img/things/energy_drink.png';
-import proteinIcon from '../assets/img/things/protein_powder.png';
-import dumbbelIcon from '../assets/img/things/dumbbel.png';
+const Bag = ({ layout = null }) => {
+  useEffect(() => {
+    layout?.({
+      type: 'init',
+      data: {
+        isShowMenu: true,
+        title: '背包',
+        backgroundColor: '#EFEFEF',
+      }
+    });
+  }, [layout]);
 
-import defaultCloth from '../assets/img/gear_icon/c1.png';
+  const [gears, setGears] = useState([]);
+  const [things, setThings] = useState([]);
 
-const Bag = () => {
-  const data = useListingWear().map(r => {
-    return {
-      ...r,
-      src: "https://i.seadn.io/gcs/files/e65f60618446f5d9897f2d5a97c30e76.png?auto=format&dpr=1&w=750",
-    };
-  });
-
-  // 之後替換成 fetch 後的 dataset
-  /* const data = [{
-    src: "https://i.seadn.io/gcs/files/e65f60618446f5d9897f2d5a97c30e76.png?auto=format&dpr=1&w=750",
-    tokenId: 1,
-  }, {
-    src: "https://i.seadn.io/gcs/files/1986a8a71a31ce0221a96c2b9aef87bb.png?auto=format&dpr=1&w=750",
-    tokenId: 2,
-  }, {
-    src: "https://i.seadn.io/gcs/files/84cdc84313024124e63e677b017f3a34.png?auto=format&dpr=1&w=750",
-    tokenId: 3,
-  }, {
-    src: "https://i.seadn.io/gcs/files/5de47d7599197e428d9425087a2027f0.png?auto=format&dpr=1&w=750",
-    tokenId: 4,
-  }, {
-    src: "https://i.seadn.io/gae/eDlHWnyukmwhxHwtsTS2LYQhW1acN6Y_d4rGWiG6_TIYaPGnWroRJrZ3eH60gvu8ai_djia5dx03Ea9wWOJOZgV-mOS_ffv7PVSwtw?auto=format&dpr=1&w=750",
-    tokenId: 5,
-  }, {
-    src: "https://i.seadn.io/gcs/files/dd971e5613e0cc206c9d24d12db86443.png?auto=format&dpr=1&w=750",
-    tokenId: 6,
-  }, {
-    src: "https://i.seadn.io/gcs/files/dd971e5613e0cc206c9d24d12db86443.png?auto=format&dpr=1&w=750",
-    tokenId: 7,
-  }]; */
+  useEffect(() => {
+    axios.get('api/bag/')
+    .then((res) => {
+      setGears(res.data?.gears);
+      setThings(res.data?.things);
+    });
+  }, []);
 
   return (
     <>
       <Container roundedCorners className="m-3 mt-0 inventory">
-        <h1>Gears</h1>
+        <h1>裝備</h1>
         <div className="boxes9 mb-4">
           {
-            (data || []).map((item) => (
-              <Link key={item.tokenId} to={`/gear?tokenId=${item.tokenId}`}>
+            (gears || []).map((item) => (
+              <Link key={item.token_id} to={`/gear?tokenId=${item.token_id}`} state={{ data: item }}>
                 <div className="box">
-                  <img src={item.src} className="img-fluid rounded-start" alt={item.src} />
+                  <img src={wearImgs[item.type]} width={'80%'} className="img-fluid rounded-start" alt={item.token_id} />
                 </div>
               </Link>
             ))
           }
-          {[...Array(data.length < 9 ? 9 - data.length : 3 - (data.length % 3))].map((x, i) =>
-            <div className="box" key={i}>
-              <img src={defaultCloth} width={'80%'} className="img-fluid rounded-start" alt="defaultCloth" />
-            </div>
+          {[...Array((gears || []).length < 9 ? 9 - (gears || []).length : 3 - (gears.length % 3))].map((x, i) =>
+            <div className="box" key={i}></div>
           )}
         </div>
-        <h1>Items</h1>
+        <h1>補給品</h1>
         <div className="boxes3">
-          <Link key={0} to={`/gear?tokenId=0`}>
-            <div className="box">
-              <img src={energyDrinkIcon} width={'80%'} className="img-fluid rounded-start" alt="energyDrinkIcon" />
-              <span>0</span>
-            </div>
-          </Link>
+          <div className="box">
+            <img src={energyDrinkIcon} width={'80%'} className="img-fluid rounded-start" alt="energyDrinkIcon" />
+            <span>{ things[0]?.amount || 0 }</span>
+          </div>
           <div className="box">
             <img src={proteinIcon} width={'80%'} className="img-fluid rounded-start" alt="proteinIcon" />
-              <span>0</span>
+            <span>{ things[1]?.amount || 0 }</span>
           </div>
           <div className="box">
             <img src={dumbbelIcon} width={'80%'} className="img-fluid rounded-start" alt="dumbbelIcon" />
-              <span>0</span>
+            <span>{ things[2]?.amount || 0 }</span>
           </div>
         </div>
       </Container>
+      <div className="p-3 d-flex justify-content-center">
+        <img src={ventIcon} width={'70%'} alt="vent icon"/>
+      </div>
     </>
   );
 }

@@ -1,28 +1,38 @@
 import { Web3Modal, useWeb3Modal } from '@web3modal/react'
-
+import { useAccount } from 'wagmi';
 import { projectId, ethereumClient } from '../providers/WagmiProvider';
+import { useAxios } from '../providers/AxiosProvider';
 
 import { IconButton, Text, Br, Heading } from 'nes-ui-react';
 
 import metamaskLogo from '../assets/img/metamask_logo.png';
 
-
 export default function MetamaskSetup() {
-  const { open } = useWeb3Modal() //later for customize connect waller button
+  const { open } = useWeb3Modal()
+  const { isConnected } = useAccount()
+  const { state, signin } = useAxios()
 
   return (
     <>
       <div className="vh-100 bg-lightGray d-flex align-items-center justify-content-center flex-column">
         <img src={metamaskLogo} width={"300"} alt="metamask logo" />
-        <Heading size="large" className="mb-5 text-center">Welcome to DREAM</Heading>
+        <Heading size="large" className="mb-5 text-center">歡迎來到 GYMBOY</Heading>
         <Br />
         <Br />
         <Br />
       </div>
       <div className="position-fixed bottom-0 start-50 translate-middle-x w-100 p-3 pb-5 row g-0">
-        <IconButton className="m-0" color="primary" size="large" onClick={() => open()}>
-          <Text size="large" className="text-center w-100">Connect Wallet</Text>
-        </IconButton>
+        {
+          <IconButton className="m-0" color="primary" size="large" onClick={() => open()}>
+            <Text size="large" className="text-center w-100">{ isConnected ? '查看' : '連接' }錢包</Text>
+          </IconButton>
+        }
+        {
+          isConnected && state.isNonced &&
+          <IconButton className="mt-3" color="primary" size="large" onClick={() => signin()}>
+            <Text size="large" className="text-center w-100">登入</Text>
+          </IconButton>
+        }
       </div>
       <Web3Modal
         projectId={projectId}

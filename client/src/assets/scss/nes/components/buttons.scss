@@ -68,7 +68,9 @@
   vertical-align: middle;
   cursor: var(--cursor-click-url), pointer;
   user-select: none;
-  font-family: 'Press Start 2P', cursive;
+  font-family: 'Cubic 11', cursive;
+  font-weight: 800;
+  font-size: 1.2rem;
   width: 100%;
 
   & .nes-ui-text {
@@ -131,7 +133,9 @@
     "primary" $background-color map-get($primary-colors, "normal") map-get($primary-colors, "hover") map-get($primary-colors, "shadow"),
     "success" $background-color map-get($success-colors, "normal") map-get($success-colors, "hover") map-get($success-colors, "shadow"),
     "warning" $base-color map-get($warning-colors, "normal") map-get($warning-colors, "hover") map-get($warning-colors, "shadow"),
-    "error" $background-color map-get($error-colors, "normal") map-get($error-colors, "hover") map-get($error-colors, "shadow");
+    "error" $background-color map-get($error-colors, "normal") map-get($error-colors, "hover") map-get($error-colors, "shadow"),
+    "pink" $background-color map-get($pink-colors, "normal") map-get($pink-colors, "hover") map-get($pink-colors, "shadow"),
+    "darkGray" $background-color map-get($darkGray-colors, "normal") map-get($darkGray-colors, "hover") map-get($darkGray-colors, "shadow");
 
   @each $type in $types {
     &.nes-ui-btn-#{nth($type, 1)} {
@@ -206,7 +210,7 @@ html.nes-ui {
   @include pixel-borders(
     $corner-size: 1,
     $border-size: $border-size,
-    $border-color: 'color-black-absolute',
+    $border-color: 'color-black-absolute', //pink-color-border
     $border-inset-color: false
   );
   display: inline-block;
@@ -220,6 +224,15 @@ html.nes-ui {
       $border-inset-color: false
     ); 
   }
+}
+
+.pink-button {
+  @include pixel-borders(
+    $corner-size: 1,
+    $border-size: $border-size,
+    $border-color: 'pink-color-border',
+    $border-inset-color: false
+  );
 }
 
 .nes-ui-icon-button-wrapper {

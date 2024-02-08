@@ -1,9 +1,9 @@
-import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-import { IconButton, PixelIcon, Spacer, Text } from 'nes-ui-react';
+import { IconButton, PixelIcon, Spacer, Heading, Text } from 'nes-ui-react';
 import { useState } from "react";
 
 function BackLink() {
@@ -14,27 +14,14 @@ function BackLink() {
       <div className="d-inline-block">
         <IconButton color="error">
           <PixelIcon inverted name="pixelicon-close" size="small" className="me-2" />
-          <Text size="medium">Back</Text>
+          <Text size="small">返回</Text>
         </IconButton>
       </div>
     </Link>
   );
 }
 
-export default function Menu() {
-  const { pathname } = useLocation();
-  const back = ![
-    '',
-    '/',
-    '/register',
-    '/profile',
-    '/bag',
-    '/market',
-    '/exercise',
-    '/exercise/realtime',
-    '/coupon',
-  ].includes(pathname) //The path that should not have BackLink
-
+export default function Menu({ state = {} }) {
   const [isExpanded, setIsExpanded] = useState(0);
 
   const NavReLink = ({ title, path }) => {
@@ -49,26 +36,42 @@ export default function Menu() {
   return (
     <Navbar
       expand="lg"
-      className={`p-3`}
+      className={`p-3 pb-0 mb-3`}
       expanded={isExpanded}
       onToggle={b => setIsExpanded(b ? 1 : 0)}
+      style={{
+        backgroundColor:isExpanded ? '#fff' : 'transparent',
+      }}
     >
-      {back && !isExpanded ? <BackLink /> : <Spacer />}
-      <Navbar.Toggle aria-controls="basic-navbar-nav" as="div">
-        <IconButton color="primary" className="m-0">
-          <span className="material-symbols-sharp">
-            {isExpanded ? 'close' : 'menu'}
-          </span>
-        </IconButton>
-      </Navbar.Toggle>
+      {
+        !isExpanded
+        ?
+          <>
+            { state.isShowBack && <BackLink /> }
+            { state.title && <Heading dense size='large' className="p-0">{ state.title.toUpperCase() }</Heading> }
+          </>
+        :
+        <Spacer />
+      }
+      <Spacer />
+      {
+        state.isShowMenu &&
+        <Navbar.Toggle aria-controls="basic-navbar-nav" as="div">
+          <IconButton color="darkGray" className="m-0">
+            <span className="material-symbols-sharp">
+              {isExpanded ? 'close' : 'menu'}
+            </span>
+          </IconButton>
+        </Navbar.Toggle>
+      }
 
-      <Navbar.Collapse id="nav-body" className={`${!isExpanded ? 'invisible' : 'vh-100'} bg-light`}>
+      <Navbar.Collapse id="nav-body" className={`${!isExpanded ? 'invisible' : 'vh-100'}`}>
         <Nav className="mt-3">
-          <NavReLink icon="home" title="Home" path="/" />
-          <NavReLink icon="backpack" title="Backpack" path="/bag" />
-          <NavReLink icon="storefront" title="Market" path="/market" />
-          <NavReLink icon="confirmation_number" title="My Coupon" path="/coupon" />
-          <NavReLink icon="account_circle" title="Profile" path="/profile" />
+          <NavReLink icon="home" title="主頁" path="/" />
+          <NavReLink icon="backpack" title="背包" path="/bag" />
+          <NavReLink icon="storefront" title="市場" path="/market" />
+          <NavReLink icon="confirmation_number" title="優惠券" path="/coupon" />
+          <NavReLink icon="account_circle" title="帳戶" path="/profile" />
         </Nav>
       </Navbar.Collapse>
     </Navbar>

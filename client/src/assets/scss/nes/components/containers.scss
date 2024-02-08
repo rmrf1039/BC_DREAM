@@ -23,7 +23,7 @@
       display: table;
       padding: 0 0.5rem;
       margin: -1.8rem 0 1rem;
-      font-size: .75em;
+      font-size: 1em;
       background-color: var(--color-white);
       color: var(--color-black-absolute);
     }
@@ -80,6 +80,10 @@
   }
 
   &.inventory {
+    background-color: #DADADA;
+  }
+
+  &.inventory, &.bg-marketContainer {
     border-color: #8B8B8B;
 
     .nes-ui-title {
@@ -93,6 +97,33 @@
       $border-color: 'gray-color-normal',
       $border-inset-color: false
     );
+  }
+
+  &.bg-marketContainer {
+    border-color: #707070;
+
+    .nes-ui-title {
+      background-color: #959595;
+      color: #fff;
+    }
+  }
+
+  &.gameboy-layout {
+    @include pixel-borders(
+      $corner-size: 1,
+      $border-size: 8px,
+      $border-color: 'gameboy-color-normal',
+      $border-inset-color: false
+    );
+
+    border-color: #4F5A5A;
+    background-color: #5EA73B;
+    border-radius: 26px !important;
+
+    > .nes-ui-title {
+      background-color: #4F5A5A;
+      color: #E0DCDB;
+    }
   }
 }
 

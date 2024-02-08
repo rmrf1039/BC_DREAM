@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import { QrScanner } from '@yudiel/react-qr-scanner';
 
@@ -11,17 +11,28 @@ import { Container, IconButton, PixelIcon, Text, Br } from "nes-ui-react";
 function useQuery() {
   const { search } = useLocation();
 
-  return React.useMemo(() => new URLSearchParams(search), [search]);
+  return useMemo(() => new URLSearchParams(search), [search]);
 }
 
-const Transfer = () => {
+const Transfer = ({ layout = null }) => {
+  useEffect(() => {
+    layout?.({
+      type: 'init',
+      data: {
+        isShowBack: true,
+        isShowMenu: false,
+      }
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [layout]);
+
   const query = useQuery();
   const navigate = useNavigate();
 
   const { address } = useAccount();
   const [toAddress, setToAddress] = useState("");
 
-  const { isSuccess, write } = useTransferFrom(toAddress, query.get("tokenId"));
+  const { isSuccess, write } = useTransferFrom(toAddress, Number(query.get("tokenId")));
 
   useEffect(() => {
     if (isSuccess) navigate("/bag");
@@ -39,25 +50,29 @@ const Transfer = () => {
             <>
               <Br />
               <Text size="medium" className="text-break text-center">
-                <p className="text-danger text-center">Transfer cannot be undo.</p>
-                Are you sure to send this Wear to address {toAddress}?
+                <p className="text-danger text-center">該操作不可逆</p>
+                您確定要將該裝備轉移至地址 ({toAddress}) 嗎?
               </Text>
               <IconButton
                 disabled={!write}
                 color="success"
                 className="w-100 mt-3"
-                onClick={() => write({
-                  args: [address, toAddress, query.get("tokenId"), 1, []],
-                })}
+                onClick={() => {
+                  console.log([address, toAddress, Number(query.get("tokenId")), 1, []]);
+                  write({
+                    args: [address, toAddress, query.get("tokenId"), '1', ''],
+                  })
+                }
+              }
               >
                 <PixelIcon inverted={false} name="pixelicon-checkmark" size="medium" className="me-2" />
-                <Text color="black" size="large">Confirm</Text>
+                <Text color="black" size="large">確認</Text>
               </IconButton>
             </>
             :
-            <Text className="text-center text-danger mt-3">Self transfer is prohibited</Text>
+            <Text className="text-center text-danger mt-3">禁止自我轉移</Text>
           :
-          <Text className="text-center mt-3">Please scan the receiver's account address.</Text>
+          <Text className="text-center mt-3">請掃描接收者的錢包地址二維碼</Text>
       }
     </Container>
   );

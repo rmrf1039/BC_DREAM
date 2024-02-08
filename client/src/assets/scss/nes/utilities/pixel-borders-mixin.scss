@@ -50,6 +50,8 @@
   --pixel-borders-image-1-contrast-alpha-color-normal: #{url(pixel-borders-image(1, $contrast-alpha-color-normal))};
 
   --pixel-borders-image-1-gray-color-normal: #{url(pixel-borders-image(1, $gray-color-normal))};
+  --pixel-borders-image-1-gameboy-color-normal: #{url(pixel-borders-image(1, #4F5A5A))};
+  --pixel-borders-image-1-pink-color-border: #{url(pixel-borders-image(1, $pink-color-border))};
 } 
 
 // Pixel border

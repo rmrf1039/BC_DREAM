@@ -6,7 +6,7 @@ const NotFound = () => {
     return (
         <Container className="vh-100 d-flex align-items-center justify-content-center flex-column text-light bg-bgBlue">
             <img className='mb-3' src={ghostImg} width={"200"} alt="ghost logo" />
-            <h1 className="text-danger">Page Not Found</h1>
+            <h1 className="text-danger">當前頁面不存在</h1>
         </Container>
     );
 }

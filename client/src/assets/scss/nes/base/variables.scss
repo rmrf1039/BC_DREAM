@@ -1,4 +1,4 @@
-$font-family: 'Press Start 2P', cursive !default;
+$font-family: 'Cubic 11', cursive !default;
 $font-size: 1rem !default;
 
 $base-color: #201F24 !default;
@@ -39,6 +39,18 @@ $error-colors: (
   normal: $error-color-normal,
   hover: $error-color-hover,
   shadow: $error-color-shadow,
+) !default;
+
+$pink-colors: (
+  normal: $pink-color-normal,
+  hover: $pink-color-hover,
+  shadow: $pink-color-shadow,
+) !default;
+
+$darkGray-colors: (
+  normal: $darkGray-color-normal,
+  hover: $darkGray-color-hover,
+  shadow: $darkGray-color-shadow,
 ) !default;
 
 :root {
